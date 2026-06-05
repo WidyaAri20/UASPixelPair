@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pemesanan — PixelPair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <input type="checkbox" id="nav-toggle" />
+
+  <header id="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="navbar-brand">
+        <div class="logo-mark"><span class="sq sq-cyan"></span><span class="sq sq-pink"></span><span class="sq sq-gray"></span></div>
+        <span class="brand-text">Pixel<span>Pair</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#tentang">Tentang Kami</a></li>
+        <li><a href="katalog.html">Produk</a></li>
+        <li><a href="riwayat.html">Riwayat</a></li>
+        <li><a href="index.html#layanan">Layanan &amp; Kontak</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button id="theme-toggle" class="btn-icon" title="Toggle Dark/Light">
+          <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
+        </button>
+        <a href="keranjang.html" class="btn-icon">🛒 <span class="cart-count">0</span></a>
+        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+      </div>
+      <label for="nav-toggle" class="hamburger-label" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </label>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="index.html">Beranda</a><span class="sep">/</span>
+          <a href="keranjang.html">Keranjang</a><span class="sep">/</span>
+          <span class="current">Pemesanan</span>
+        </nav>
+        <h1>Form Pemesanan</h1>
+        <p>Lengkapi data dengan benar untuk memproses pesananmu</p>
+      </div>
+    </section>
+
+    <div class="step-bar">
+      <div class="container">
+        <ol class="steps">
+          <li class="step active"><span class="step-num">1</span><span class="step-name">Data Pembeli</span></li>
+          <li class="step"><span class="step-num">2</span><span class="step-name">Pengiriman</span></li>
+          <li class="step"><span class="step-num">3</span><span class="step-name">Pembayaran</span></li>
+          <li class="step"><span class="step-num">4</span><span class="step-name">Konfirmasi</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="container" style="padding-block: var(--sp-2xl)">
+      <div class="pemesanan-layout">
+        <div>
+
+          <div class="form-card">
+            <h2>🛍 Produk yang Dipesan</h2>
+            <div id="pem-produk-list">
+            </div>
+            <a href="katalog.html" class="link-tambah">+ Tambah Produk Lain</a>
+          </div>
+
+          <div class="form-card">
+            <h2>👤 Data Pembeli</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nama Depan <span class="required">*</span></label>
+                <input type="text" id="pem-nama" placeholder="Nama depan" required />
+              </div>
+              <div class="form-group">
+                <label>Nama Belakang</label>
+                <input type="text" placeholder="Nama belakang" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email <span class="required">*</span></label>
+              <input type="email" id="pem-email" placeholder="contoh@email.com" required />
+            </div>
+            <div class="form-group">
+              <label>No. HP <span class="required">*</span></label>
+              <input type="tel" id="pem-hp" placeholder="08xxxxxxxxxx" required />
+            </div>
+          </div>
+
+          <div class="form-card">
+            <h2>📍 Alamat Pengiriman</h2>
+            <div class="form-group">
+              <label>Alamat Lengkap <span class="required">*</span></label>
+              <textarea id="pem-alamat" rows="3" placeholder="Nama jalan, nomor rumah, RT/RW"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Kota <span class="required">*</span></label>
+                <input type="text" id="pem-kota" placeholder="Medan" required />
+              </div>
+              <div class="form-group">
+                <label>Provinsi</label>
+                <select>
+                  <option value="">Pilih Provinsi</option>
+                  <option selected>Sumatera Utara</option>
+                  <option>DKI Jakarta</option>
+                  <option>Jawa Barat</option>
+                  <option>Jawa Timur</option>
+                  <option>Bali</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Kode Pos</label>
+                <input type="text" placeholder="20111" />
+              </div>
+              <div class="form-group">
+                <label>Catatan</label>
+                <input type="text" placeholder="Misal: titip satpam" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <h2>🚚 Metode Pengiriman</h2>
+            <label class="pengiriman-option">
+              <input type="radio" name="pengiriman" value="jne-reg" checked />
+              <div class="pengiriman-detail"><span class="kurir-nama">JNE Regular</span><span class="kurir-estimasi">3–5 hari kerja</span></div>
+              <span class="kurir-harga">Rp 25.000</span>
+            </label>
+            <label class="pengiriman-option">
+              <input type="radio" name="pengiriman" value="jne-yes" />
+              <div class="pengiriman-detail"><span class="kurir-nama">JNE YES</span><span class="kurir-estimasi">1 hari kerja</span></div>
+              <span class="kurir-harga">Rp 55.000</span>
+            </label>
+            <label class="pengiriman-option">
+              <input type="radio" name="pengiriman" value="sicepat" />
+              <div class="pengiriman-detail"><span class="kurir-nama">SiCepat REG</span><span class="kurir-estimasi">2–4 hari kerja</span></div>
+              <span class="kurir-harga">Rp 20.000</span>
+            </label>
+            <label class="pengiriman-option">
+              <input type="radio" name="pengiriman" value="jnt" />
+              <div class="pengiriman-detail"><span class="kurir-nama">J&amp;T Express</span><span class="kurir-estimasi">3–5 hari kerja</span></div>
+              <span class="kurir-harga">Rp 22.000</span>
+            </label>
+            <label class="pengiriman-option">
+              <input type="radio" name="pengiriman" value="gosend" />
+              <div class="pengiriman-detail"><span class="kurir-nama">GoSend Instant</span><span class="kurir-estimasi">1–3 jam (Medan)</span></div>
+              <span class="kurir-harga">Rp 35.000</span>
+            </label>
+          </div>
+
+          <div class="form-card">
+            <h2>💳 Metode Pembayaran</h2>
+            <div class="pembayaran-group"><h4>Transfer Bank</h4>
+              <label class="pembayaran-option"><input type="radio" name="bayar" value="bca" checked /><span class="bank-logo">BCA</span> Bank BCA</label>
+              <label class="pembayaran-option"><input type="radio" name="bayar" value="mandiri" /><span class="bank-logo">MDR</span> Bank Mandiri</label>
+              <label class="pembayaran-option"><input type="radio" name="bayar" value="bni" /><span class="bank-logo">BNI</span> Bank BNI</label>
+            </div>
+            <div class="pembayaran-group"><h4>Dompet Digital</h4>
+              <label class="pembayaran-option"><input type="radio" name="bayar" value="gopay" /> 💚 GoPay</label>
+              <label class="pembayaran-option"><input type="radio" name="bayar" value="ovo" /> 💜 OVO</label>
+              <label class="pembayaran-option"><input type="radio" name="bayar" value="dana" /> 🔵 DANA</label>
+              <label class="pembayaran-option"><input type="radio" name="bayar" value="qris" /> 📷 QRIS</label>
+            </div>
+            <div class="pembayaran-group"><h4>Lainnya</h4>
+              <label class="pembayaran-option"><input type="radio" name="bayar" value="cod" /> 💵 COD (Tunai)</label>
+              <label class="pembayaran-option"><input type="radio" name="bayar" value="cicilan-6" /> 🔄 Cicilan 0% – 6 Bulan</label>
+              <label class="pembayaran-option"><input type="radio" name="bayar" value="cicilan-12" /> 🔄 Cicilan 0% – 12 Bulan</label>
+              <label class="pembayaran-option"><input type="radio" name="bayar" value="cicilan-24" /> 🔄 Cicilan 0% – 24 Bulan</label>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <h2>🎁 Kode Promo</h2>
+            <div class="promo-wrap">
+              <input type="text" id="pem-promo-input" placeholder="Masukkan kode promo" />
+              <button class="btn btn-outline btn-sm" data-action="apply-promo">Gunakan</button>
+            </div>
+            <p class="promo-hint">💡 PIXELNEW10 · HEMAT20 · GRATISONGKIR</p>
+          </div>
+
+        </div>
+
+        <aside>
+          <div class="ringkasan-card sticky-ringkasan">
+            <h2>Ringkasan Pesanan</h2>
+            <div style="margin-bottom:var(--sp-md);padding-bottom:var(--sp-md);border-bottom:1px solid var(--clr-border)" id="pem-ringkasan-items">
+              <!-- filled by JS -->
+            </div>
+            <div class="hitung-row"><span>Subtotal</span><span id="pem-subtotal">Rp 0</span></div>
+            <div class="hitung-row"><span>Ongkos Kirim</span><span id="pem-ongkir">Rp 0</span></div>
+            <div class="hitung-row"><span>Diskon Promo</span><span style="color:var(--clr-green)">— Rp 0</span></div>
+            <div class="hitung-row"><span>PPN (11%)</span><span id="pem-ppn">Rp 0</span></div>
+            <div class="hitung-row total-row"><strong>Total Bayar</strong><strong id="pem-total">Rp 0</strong></div>
+            <div class="ringkasan-info" style="margin-top:var(--sp-lg)">
+              <p>✅ Produk original bergaransi resmi</p>
+              <p>✅ Pengiriman aman + asuransi</p>
+              <p>✅ Bisa dikembalikan dalam 7 hari</p>
+            </div>
+            <button class="btn btn-primary btn-full" id="btn-konfirmasi" style="margin-top:var(--sp-lg)">Konfirmasi Pesanan →</button>
+            <a href="keranjang.html" class="link-back">← Kembali ke Keranjang</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 PixelPair 🩵. Web ini dibuat sebagai Proyek UTS.</p>
+        <div class="footer-bottom-links"><a href="#">Kebijakan Privasi</a><a href="#">Syarat &amp; Ketentuan</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Konfirmasi Pesanan -->
+  <div id="modal-konfirmasi">
+    <div class="modal-box">
+      <div class="modal-icon">🎉</div>
+      <h2>Pesanan Berhasil!</h2>
+      <p>Terima kasih telah berbelanja di PixelPair. Pesananmu sedang kami proses.</p>
+      <div class="modal-order-id" id="modal-order-id">#PP-2025-001</div>
+      <p style="font-size:.85rem;color:var(--txt2);margin-bottom:28px">Konfirmasi pesanan akan dikirim ke emailmu. Pantau status pengiriman di halaman Riwayat.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="riwayat.html" class="btn btn-primary">Lihat Riwayat →</a>
+        <a href="katalog.html" class="btn btn-ghost">Belanja Lagi</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

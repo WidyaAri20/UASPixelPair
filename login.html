@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — PixelPair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Hamburger toggle -->
+  <input type="checkbox" id="nav-toggle" />
+
+  <!-- Radio tab login/daftar -->
+  <input type="radio" name="login-tab" id="tab-masuk" class="login-radio" checked />
+  <input type="radio" name="login-tab" id="tab-daftar" class="login-radio" />
+
+  <header id="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="navbar-brand">
+        <div class="logo-mark">
+          <span class="sq sq-cyan"></span>
+          <span class="sq sq-pink"></span>
+          <span class="sq sq-gray"></span>
+        </div>
+        <span class="brand-text">Pixel<span>Pair</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#tentang">Tentang Kami</a></li>
+        <li><a href="katalog.html">Produk</a></li>
+        <li><a href="riwayat.html">Riwayat</a></li>
+        <li><a href="index.html#layanan">Layanan &amp; Kontak</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button id="theme-toggle" class="btn-icon" title="Toggle Dark/Light"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button>
+        <a href="keranjang.html" class="btn-icon">🛒 <span class="cart-count">0</span></a>
+        <a href="login.html" class="btn btn-outline btn-sm active">Login</a>
+      </div>
+      <label for="nav-toggle" class="hamburger-label" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </label>
+    </nav>
+  </header>
+
+  <main class="login-main">
+
+    <div class="login-card-wrap">
+
+      <!-- Header kartu -->
+      <div class="login-card-header">
+        <div class="login-logo-mini">
+          <div class="logo-mark sm">
+            <span class="sq sq-cyan"></span>
+            <span class="sq sq-pink"></span>
+            <span class="sq sq-gray"></span>
+          </div>
+          <span class="brand-text" style="font-size:1.1rem">Pixel<span>Pair</span></span>
+        </div>
+
+        <!-- Tab bar: label terhubung ke radio di luar body -->
+        <div class="login-tabs">
+          <label for="tab-masuk" class="login-tab-label tab-masuk">Masuk</label>
+          <label for="tab-daftar" class="login-tab-label tab-daftar">Daftar</label>
+        </div>
+      </div>
+
+      <!-- PANEL MASUK -->
+      <div class="panel-masuk">
+        <p class="login-panel-title">Selamat Datang! 👋</p>
+        <p class="login-sub">
+          Belum punya akun?
+          <label for="tab-daftar">Daftar gratis</label>
+        </p>
+
+        <form action="#" method="post">
+          <div class="lg-group">
+            <label for="login-email">Email / Nama Akun <span class="required">*</span></label>
+            <input type="email" id="login-email" name="email" placeholder="email@contoh.com" required autocomplete="email" />
+          </div>
+          <div class="lg-group">
+            <label for="login-pass">Password <span class="required">*</span></label>
+            <input type="password" id="login-pass" name="password" placeholder="Masukkan password" required autocomplete="current-password" />
+          </div>
+          <a href="#" class="forgot-link">Lupa password?</a>
+          <button type="submit" class="btn-submit">Masuk →</button>
+        </form>
+
+        <div class="or-divider"><span>atau</span></div>
+        <a href="#" class="btn-google">
+          <span style="font-weight:900;font-size:1.1rem;color:#EA4335">G</span>
+          Lanjutkan dengan Google
+        </a>
+      </div>
+
+      <!-- PANEL DAFTAR -->
+      <div class="panel-daftar">
+        <p class="login-panel-title">Buat Akun Baru ✨</p>
+        <p class="login-sub">
+          Sudah punya akun?
+          <label for="tab-masuk">Masuk di sini</label>
+        </p>
+
+        <form action="#" method="post">
+          <div class="lg-row-2">
+            <div class="lg-group">
+              <label for="reg-depan">Nama Depan <span class="required">*</span></label>
+              <input type="text" id="reg-depan" name="nama_depan" placeholder="Nama depan" required autocomplete="given-name" />
+            </div>
+            <div class="lg-group">
+              <label for="reg-belakang">Nama Belakang</label>
+              <input type="text" id="reg-belakang" name="nama_belakang" placeholder="Nama belakang" autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="lg-group">
+            <label for="reg-email">Email <span class="required">*</span></label>
+            <input type="email" id="reg-email" name="email" placeholder="email@contoh.com" required autocomplete="email" />
+          </div>
+          <div class="lg-group">
+            <label for="reg-phone">No. Telepon</label>
+            <input type="tel" id="reg-phone" name="telepon" placeholder="+62 8xx-xxxx-xxxx" autocomplete="tel" />
+          </div>
+          <div class="lg-group">
+            <label for="reg-pass">Password <span class="required">*</span></label>
+            <input type="password" id="reg-pass" name="password" placeholder="Minimal 8 karakter" required autocomplete="new-password" />
+          </div>
+          <div class="lg-group">
+            <label for="reg-confirm">Konfirmasi Password <span class="required">*</span></label>
+            <input type="password" id="reg-confirm" name="konfirmasi" placeholder="Ulangi password" required autocomplete="new-password" />
+          </div>
+          <label class="agree-wrap">
+            <input type="checkbox" name="setuju" required />
+            <span>Saya setuju dengan <a href="#">Syarat &amp; Ketentuan</a> dan <a href="#">Kebijakan Privasi</a></span>
+          </label>
+          <button type="submit" class="btn-submit">Daftar Sekarang →</button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 PixelPair 🩵. Web ini dibuat sebagai Proyek UTS.</p>
+        <div class="footer-bottom-links"><a href="#">Kebijakan Privasi</a><a href="#">Syarat &amp; Ketentuan</a></div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

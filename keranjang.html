@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keranjang Belanja — PixelPair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <input type="checkbox" id="nav-toggle" />
+
+  <header id="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="navbar-brand">
+        <div class="logo-mark"><span class="sq sq-cyan"></span><span class="sq sq-pink"></span><span class="sq sq-gray"></span></div>
+        <span class="brand-text">Pixel<span>Pair</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#tentang">Tentang Kami</a></li>
+        <li><a href="katalog.html">Produk</a></li>
+        <li><a href="riwayat.html">Riwayat</a></li>
+        <li><a href="index.html#layanan">Layanan &amp; Kontak</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button id="theme-toggle" class="btn-icon" title="Toggle Dark/Light">
+          <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
+        </button>
+        <a href="keranjang.html" class="btn-icon" style="border-color:var(--clr-cyan);color:var(--clr-cyan)">🛒 <span class="cart-count">0</span></a>
+        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+      </div>
+      <label for="nav-toggle" class="hamburger-label" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </label>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb"><a href="index.html">Beranda</a><span class="sep">/</span><span class="current">Keranjang</span></nav>
+        <h1>Keranjang Belanja</h1>
+        <p>Produk yang kamu pilih siap untuk dipesan</p>
+      </div>
+    </section>
+
+    <div class="container" style="padding-block: var(--sp-2xl)">
+      <div class="keranjang-layout">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-lg)">
+            <p id="cart-item-count" style="font-size:0.85rem;color:var(--txt2)">0 produk di keranjang</p>
+            <button class="btn btn-ghost btn-sm" style="color:var(--clr-red);border-color:rgba(239,68,68,0.3)" onclick="Cart.clear();renderKeranjang();Cart.showToast('Keranjang dikosongkan 🗑')">🗑 Hapus Semua</button>
+          </div>
+
+          <!-- Dynamic cart items rendered by JS -->
+          <div id="keranjang-list"></div>
+
+          <div style="margin-top:var(--sp-xl)">
+            <a href="katalog.html" class="btn btn-ghost btn-sm">← Lanjutkan Belanja</a>
+          </div>
+        </div>
+
+        <aside>
+          <div class="ringkasan-card">
+            <h2>Ringkasan Pesanan</h2>
+            <div class="promo-wrap">
+              <input type="text" placeholder="Kode promo..." id="promo-input-cart" />
+              <button class="btn btn-outline btn-sm" data-action="apply-promo">Pakai</button>
+            </div>
+            <p class="promo-hint">💡 PIXELNEW10 · HEMAT20 · GRATISONGKIR</p>
+            <div style="margin-bottom:var(--sp-md);padding-bottom:var(--sp-md);border-bottom:1px solid var(--clr-border)" id="ringkasan-items">
+              <!-- filled by JS -->
+            </div>
+            <div class="hitung-row"><span>Subtotal</span><span id="ringkasan-subtotal">Rp 0</span></div>
+            <div class="hitung-row"><span>Ongkos Kirim</span><span id="ringkasan-ongkir">Rp 0</span></div>
+            <div class="hitung-row"><span>PPN (11%)</span><span id="ringkasan-ppn">Rp 0</span></div>
+            <div class="hitung-row total-row"><strong>Total</strong><strong id="ringkasan-total">Rp 0</strong></div>
+            <div class="ringkasan-info" style="margin-top:var(--sp-lg)">
+              <p>✅ Produk original bergaransi resmi</p>
+              <p>✅ Pengiriman aman + asuransi</p>
+              <p>✅ Bisa dikembalikan dalam 7 hari</p>
+            </div>
+            <a href="pemesanan.html" class="btn btn-primary btn-full" style="margin-top:var(--sp-lg)">Lanjut ke Pemesanan →</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 PixelPair 🩵. Web ini dibuat sebagai Proyek UTS.</p>
+        <div class="footer-bottom-links"><a href="#">Kebijakan Privasi</a><a href="#">Syarat &amp; Ketentuan</a></div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

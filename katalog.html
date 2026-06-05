@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katalog Produk — PixelPair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <input type="checkbox" id="nav-toggle" />
+
+  <header id="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="navbar-brand">
+        <div class="logo-mark">
+          <span class="sq sq-cyan"></span>
+          <span class="sq sq-pink"></span>
+          <span class="sq sq-gray"></span>
+        </div>
+        <span class="brand-text">Pixel<span>Pair</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#tentang">Tentang Kami</a></li>
+        <li><a href="katalog.html" class="active">Produk</a></li>
+        <li><a href="riwayat.html">Riwayat</a></li>
+        <li><a href="index.html#layanan">Layanan &amp; Kontak</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button id="theme-toggle" class="btn-icon"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button>
+        <a href="keranjang.html" class="btn-icon">🛒 <span class="cart-count">0</span></a>
+        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+      </div>
+      <label for="nav-toggle" class="hamburger-label" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </label>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb"><a href="index.html">Beranda</a><span class="sep">/</span><span class="current">Katalog Produk</span></nav>
+        <h1>Katalog Produk</h1>
+        <p>Temukan ribuan produk elektronik original terbaik pilihan kami</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="katalog-layout">
+
+        <!-- Sidebar Filter -->
+        <aside class="sidebar-filter">
+          <h3>Filter Produk</h3>
+          <div class="filter-group">
+            <div class="filter-group-label">Kategori</div>
+            <label class="filter-opt"><input type="radio" name="kategori" value="semua" checked /> Semua Kategori</label>
+            <label class="filter-opt"><input type="radio" name="kategori" value="smartphone" /> Smartphone</label>
+            <label class="filter-opt"><input type="radio" name="kategori" value="laptop" /> Laptop</label>
+            <label class="filter-opt"><input type="radio" name="kategori" value="audio" /> Audio</label>
+            <label class="filter-opt"><input type="radio" name="kategori" value="wearable" /> Wearable</label>
+            <label class="filter-opt"><input type="radio" name="kategori" value="gaming" /> Gaming</label>
+            <label class="filter-opt"><input type="radio" name="kategori" value="aksesori" /> Aksesori</label>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-label">Brand</div>
+            <label class="filter-opt"><input type="checkbox" value="apple" /> Apple</label>
+            <label class="filter-opt"><input type="checkbox" value="samsung" /> Samsung</label>
+            <label class="filter-opt"><input type="checkbox" value="asus" /> ASUS</label>
+            <label class="filter-opt"><input type="checkbox" value="sony" /> Sony</label>
+            <label class="filter-opt"><input type="checkbox" value="xiaomi" /> Xiaomi</label>
+            <label class="filter-opt"><input type="checkbox" value="lenovo" /> Lenovo</label>
+          </div>
+          <button class="btn btn-ghost btn-sm btn-full" style="margin-top:8px" data-action="reset-filter">Reset Filter</button>
+        </aside>
+
+        <!-- Produk Grid -->
+        <div>
+          <div class="katalog-toolbar">
+            <div class="search-wrap">
+              <span class="search-icon">🔍</span>
+              <input type="text" placeholder="Cari produk..." />
+            </div>
+            <div class="katalog-count">Menampilkan <strong>12</strong> produk</div>
+          </div>
+
+          <div class="produk-grid" id="galeri-produk">
+
+            <!-- 1. iPhone 15 Pro Max -->
+            <article class="produk-card" data-kategori="smartphone" data-brand="apple">
+              <div class="produk-img-wrap">
+                <img src="gambar/iphone-15-pro-max.png" alt="iPhone 15 Pro Max 256GB" loading="lazy" />
+                <div class="produk-badge-wrap"><span class="badge badge-pink">HOT</span></div>
+                <button class="produk-wishlist" title="Wishlist">♡</button>
+              </div>
+              <div class="produk-body">
+                <p class="produk-kategori">Smartphone</p>
+                <h3 class="produk-name">iPhone 15 Pro Max 256GB</h3>
+                <div class="produk-rating">★★★★★ <span>(312)</span></div>
+                <div class="produk-harga-row"><span class="produk-harga">Rp 22,49jt</span></div>
+              </div>
+              <div class="produk-footer">
+                <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="iphone-15">+ Keranjang</button>
+                <button class="btn btn-primary btn-sm" data-action="beli" data-id="iphone-15">Beli</button>
+              </div>
+            </article>
+
+            <!-- 2. ASUS ROG Zephyrus G14 -->
+            <article class="produk-card" data-kategori="laptop" data-brand="asus">
+              <div class="produk-img-wrap">
+                <img src="gambar/ASUS ROG Zephyrus G14 2024.jpg" alt="ASUS ROG Zephyrus G14 2024" loading="lazy" />
+                <div class="produk-badge-wrap"><span class="badge badge-cyan">BARU</span></div>
+                <button class="produk-wishlist" title="Wishlist">♡</button>
+              </div>
+              <div class="produk-body">
+                <p class="produk-kategori">Laptop</p>
+                <h3 class="produk-name">ASUS ROG Zephyrus G14 2024</h3>
+                <div class="produk-rating">★★★★★ <span>(189)</span></div>
+                <div class="produk-harga-row"><span class="produk-harga">Rp 27,49jt</span></div>
+              </div>
+              <div class="produk-footer">
+                <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="rog-g14">+ Keranjang</button>
+                <button class="btn btn-primary btn-sm" data-action="beli" data-id="rog-g14">Beli</button>
+              </div>
+            </article>
+
+            <!-- 3. Sony WH-1000XM5 -->
+            <article class="produk-card" data-kategori="audio" data-brand="sony">
+              <div class="produk-img-wrap">
+                <img src="gambar/Sony-WH1000XM5-2.png" alt="Sony WH-1000XM5" loading="lazy" />
+                <div class="produk-badge-wrap"><span class="badge badge-amber">DISKON</span></div>
+                <button class="produk-wishlist" title="Wishlist">♡</button>
+              </div>
+              <div class="produk-body">
+                <p class="produk-kategori">Audio</p>
+                <h3 class="produk-name">Sony WH-1000XM5</h3>
+                <div class="produk-rating">★★★★★ <span>(421)</span></div>
+                <div class="produk-harga-row"><span class="produk-harga">Rp 4,29jt</span></div>
+              </div>
+              <div class="produk-footer">
+                <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="sony-wh">+ Keranjang</button>
+                <button class="btn btn-primary btn-sm" data-action="beli" data-id="sony-wh">Beli</button>
+              </div>
+            </article>
+
+            <!-- 4. Apple Watch Series 9 -->
+            <article class="produk-card" data-kategori="wearable" data-brand="apple">
+              <div class="produk-img-wrap">
+                <img src="gambar/Apple Watch Series 9 GPS 45mm.webp" alt="Apple Watch Series 9 GPS 45mm" loading="lazy" />
+                <div class="produk-badge-wrap"><span class="badge badge-green">TERBATAS</span></div>
+                <button class="produk-wishlist" title="Wishlist">♡</button>
+              </div>
+              <div class="produk-body">
+                <p class="produk-kategori">Wearable</p>
+                <h3 class="produk-name">Apple Watch Series 9 GPS 45mm</h3>
+                <div class="produk-rating">★★★★½ <span>(98)</span></div>
+                <div class="produk-harga-row"><span class="produk-harga">Rp 7,49jt</span></div>
+              </div>
+              <div class="produk-footer">
+                <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="applewatch">+ Keranjang</button>
+                <button class="btn btn-primary btn-sm" data-action="beli" data-id="applewatch">Beli</button>
+              </div>
+            </article>
+
+            <!-- 5. Samsung Galaxy S24 Ultra -->
+            <article class="produk-card" data-kategori="smartphone" data-brand="samsung">
+              <div class="produk-img-wrap">
+                <img src="gambar/Samsung Galaxy S24 Ultra.jpg" alt="Samsung Galaxy S24 Ultra" loading="lazy" />
+                <div class="produk-badge-wrap"><span class="badge badge-pink">BESTSELLER</span></div>
+                <button class="produk-wishlist" title="Wishlist">♡</button>
+              </div>
+              <div class="produk-body">
+                <p class="produk-kategori">Smartphone</p>
+                <h3 class="produk-name">Samsung Galaxy S24 Ultra</h3>
+                <div class="produk-rating">★★★★★ <span>(276)</span></div>
+                <div class="produk-harga-row"><span class="produk-harga">Rp 19,99jt</span></div>
+              </div>
+              <div class="produk-footer">
+                <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="samsung-s24">+ Keranjang</button>
+                <button class="btn btn-primary btn-sm" data-action="beli" data-id="samsung-s24">Beli</button>
+              </div>
+            </article>
+
+            <!-- 6. ASUS ROG Strix G513 Gaming -->
+            <article class="produk-card" data-kategori="gaming" data-brand="asus">
+              <div class="produk-img-wrap">
+                <img src="gambar/ASUS ROG Strix G513 Gaming.webp" alt="ASUS ROG Strix G513 Gaming" loading="lazy" />
+                <div class="produk-badge-wrap"><span class="badge badge-cyan">BARU</span></div>
+                <button class="produk-wishlist" title="Wishlist">♡</button>
+              </div>
+              <div class="produk-body">
+                <p class="produk-kategori">Gaming</p>
+                <h3 class="produk-name">ASUS ROG Strix G513 Gaming</h3>
+                <div class="produk-rating">★★★★★ <span>(144)</span></div>
+                <div class="produk-harga-row"><span class="produk-harga">Rp 22,99jt</span></div>
+              </div>
+              <div class="produk-footer">
+                <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="rog-strix">+ Keranjang</button>
+                <button class="btn btn-primary btn-sm" data-action="beli" data-id="rog-strix">Beli</button>
+              </div>
+            </article>
+
+            <!-- 7. MacBook Air M2 256GB -->
+            <article class="produk-card" data-kategori="laptop" data-brand="apple">
+              <div class="produk-img-wrap">
+                <img src="gambar/MacBook Air M2 256GB.png" alt="MacBook Air M2 13 256GB" loading="lazy" />
+                <div class="produk-badge-wrap"><span class="badge badge-amber">DISKON</span></div>
+                <button class="produk-wishlist" title="Wishlist">♡</button>
+              </div>
+              <div class="produk-body">
+                <p class="produk-kategori">Laptop</p>
+                <h3 class="produk-name">MacBook Air M2 13" 256GB</h3>
+                <div class="produk-rating">★★★★★ <span>(534)</span></div>
+                <div class="produk-harga-row"><span class="produk-harga">Rp 17,49jt</span></div>
+              </div>
+              <div class="produk-footer">
+                <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="macbook-m2">+ Keranjang</button>
+                <button class="btn btn-primary btn-sm" data-action="beli" data-id="macbook-m2">Beli</button>
+              </div>
+            </article>
+
+            <!-- 8. Magic Mouse Apple -->
+            <article class="produk-card" data-kategori="aksesori" data-brand="apple">
+              <div class="produk-img-wrap">
+                <img src="gambar/Magic Mouse Apple.jpg" alt="Magic Mouse Apple" loading="lazy" />
+                <button class="produk-wishlist" title="Wishlist">♡</button>
+              </div>
+              <div class="produk-body">
+                <p class="produk-kategori">Aksesori</p>
+                <h3 class="produk-name">Magic Mouse Apple</h3>
+                <div class="produk-rating">★★★★★ <span>(210)</span></div>
+                <div class="produk-harga-row"><span class="produk-harga">Rp 1,29jt</span></div>
+              </div>
+              <div class="produk-footer">
+                <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="magic-mouse">+ Keranjang</button>
+                <button class="btn btn-primary btn-sm" data-action="beli" data-id="magic-mouse">Beli</button>
+              </div>
+            </article>
+
+            <!-- 9. Xiaomi 14 Ultra -->
+            <article class="produk-card" data-kategori="smartphone" data-brand="xiaomi">
+              <div class="produk-img-wrap">
+                <img src="gambar/Xiaomi 14 Ultra 512GB.jpg" alt="Xiaomi 14 Ultra 512GB" loading="lazy" />
+                <div class="produk-badge-wrap"><span class="badge badge-green">VALUE</span></div>
+                <button class="produk-wishlist" title="Wishlist">♡</button>
+              </div>
+              <div class="produk-body">
+                <p class="produk-kategori">Smartphone</p>
+                <h3 class="produk-name">Xiaomi 14 Ultra 512GB</h3>
+                <div class="produk-rating">★★★★½ <span>(167)</span></div>
+                <div class="produk-harga-row"><span class="produk-harga">Rp 15,49jt</span></div>
+              </div>
+              <div class="produk-footer">
+                <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="xiaomi-14">+ Keranjang</button>
+                <button class="btn btn-primary btn-sm" data-action="beli" data-id="xiaomi-14">Beli</button>
+              </div>
+            </article>
+
+            <!-- 10. Sony SRS-XB43 -->
+            <article class="produk-card" data-kategori="audio" data-brand="sony">
+              <div class="produk-img-wrap">
+                <img src="gambar/Sony SRS-XB43 Speaker.avif" alt="Sony SRS-XB43 Speaker" loading="lazy" />
+                <button class="produk-wishlist" title="Wishlist">♡</button>
+              </div>
+              <div class="produk-body">
+                <p class="produk-kategori">Audio</p>
+                <h3 class="produk-name">Sony SRS-XB43 Speaker</h3>
+                <div class="produk-rating">★★★★★ <span>(89)</span></div>
+                <div class="produk-harga-row"><span class="produk-harga">Rp 2,29jt</span></div>
+              </div>
+              <div class="produk-footer">
+                <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="sony-spk">+ Keranjang</button>
+                <button class="btn btn-primary btn-sm" data-action="beli" data-id="sony-spk">Beli</button>
+              </div>
+            </article>
+
+            <!-- 11. Lenovo ThinkPad X1 Carbon G12 -->
+            <article class="produk-card" data-kategori="laptop" data-brand="lenovo">
+              <div class="produk-img-wrap">
+                <img src="gambar/Lenovo ThinkPad X1 Carbon G12.jpg" alt="Lenovo ThinkPad X1 Carbon G12" loading="lazy" />
+                <div class="produk-badge-wrap"><span class="badge badge-cyan">BARU</span></div>
+                <button class="produk-wishlist" title="Wishlist">♡</button>
+              </div>
+              <div class="produk-body">
+                <p class="produk-kategori">Laptop</p>
+                <h3 class="produk-name">Lenovo ThinkPad X1 Carbon G12</h3>
+                <div class="produk-rating">★★★★★ <span>(73)</span></div>
+                <div class="produk-harga-row"><span class="produk-harga">Rp 31,99jt</span></div>
+              </div>
+              <div class="produk-footer">
+                <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="thinkpad">+ Keranjang</button>
+                <button class="btn btn-primary btn-sm" data-action="beli" data-id="thinkpad">Beli</button>
+              </div>
+            </article>
+
+            <!-- 12. AirPods Pro 2nd Generation -->
+            <article class="produk-card" data-kategori="aksesori" data-brand="apple">
+              <div class="produk-img-wrap">
+                <img src="gambar/AirPods Pro 2nd Generation.jpg" alt="AirPods Pro 2nd Generation" loading="lazy" />
+                <div class="produk-badge-wrap"><span class="badge badge-pink">POPULER</span></div>
+                <button class="produk-wishlist" title="Wishlist">♡</button>
+              </div>
+              <div class="produk-body">
+                <p class="produk-kategori">Aksesori</p>
+                <h3 class="produk-name">AirPods Pro 2nd Generation</h3>
+                <div class="produk-rating">★★★★★ <span>(388)</span></div>
+                <div class="produk-harga-row"><span class="produk-harga">Rp 3,99jt</span></div>
+              </div>
+              <div class="produk-footer">
+                <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="airpods">+ Keranjang</button>
+                <button class="btn btn-primary btn-sm" data-action="beli" data-id="airpods">Beli</button>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 PixelPair 🩵. Web ini dibuat sebagai Proyek UTS.</p>
+        <div class="footer-bottom-links"><a href="#">Kebijakan Privasi</a><a href="#">Syarat &amp; Ketentuan</a></div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
