@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Produk — PixelPair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <input type="checkbox" id="nav-toggle" />
+
+  <header id="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="navbar-brand">
+        <div class="logo-mark"><span class="sq sq-cyan"></span><span class="sq sq-pink"></span><span class="sq sq-gray"></span></div>
+        <span class="brand-text">Pixel<span>Pair</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#tentang">Tentang</a></li>
+        <li><a href="katalog.html" class="active">Produk</a></li>
+        <li><a href="riwayat.html">Riwayat</a></li>
+        <li><a href="index.html#layanan">Layanan</a></li>
+        <li><a href="index.html#kontak">Kontak</a></li>
+        <li class="nav-mobile-only"><a href="login.html">👤 Login</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button id="theme-toggle" class="btn-icon"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button>
+        <a href="keranjang.html" class="btn-icon">🛒 <span class="cart-count">0</span></a>
+        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        <label for="nav-toggle" class="hamburger-label" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </label>
+      </div>
+    </nav>
+  </header>
+
+  <main role="main">
+    <section class="page-header">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="index.html">Beranda</a><span class="sep">/</span>
+          <a href="katalog.html">Produk</a><span class="sep">/</span>
+          <span class="current" id="detail-breadcrumb">Detail Produk</span>
+        </nav>
+      </div>
+    </section>
+
+    <div class="container" style="padding-block: var(--sp-2xl)">
+      <div class="detail-layout">
+
+        <!-- Gambar Produk -->
+        <div class="detail-img-col">
+          <div class="detail-img-wrap">
+            <img id="detail-img" src="" alt="" />
+          </div>
+        </div>
+
+        <!-- Info Produk -->
+        <div class="detail-info-col">
+          <span class="detail-badge" id="detail-badge"></span>
+          <p class="detail-kategori" id="detail-kategori"></p>
+          <h1 class="detail-nama" id="detail-nama">Memuat...</h1>
+          <div class="detail-rating" id="detail-rating">★★★★★ <span>(0)</span></div>
+          <div class="detail-harga" id="detail-harga">Rp 0</div>
+
+          <div class="detail-stok">
+            <span class="stok-dot"></span> Stok Tersedia &middot; Garansi Resmi 1 Tahun
+          </div>
+
+          <div class="detail-actions">
+            <button class="btn btn-outline" id="btn-detail-cart">🛒 Tambah ke Keranjang</button>
+            <button class="btn btn-primary" id="btn-detail-beli">⚡ Beli Sekarang</button>
+          </div>
+
+          <div class="detail-meta">
+            <div class="detail-meta-row"><span>SKU</span><span id="detail-sku">—</span></div>
+            <div class="detail-meta-row"><span>Kategori</span><span id="detail-meta-kat">—</span></div>
+            <div class="detail-meta-row"><span>Brand</span><span id="detail-meta-brand">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deskripsi & Spesifikasi -->
+      <div class="detail-desc-section">
+        <h2 class="detail-desc-title">Deskripsi &amp; Spesifikasi</h2>
+        <div class="detail-desc-content">
+          <p id="detail-desc-short"></p>
+          <div id="detail-desc-full" class="detail-desc-full hidden">
+            <p id="detail-desc-extra"></p>
+            <h3 class="spek-title">Spesifikasi Teknis</h3>
+            <table class="spek-table" id="detail-spek-table"></table>
+          </div>
+          <button class="btn-baca-selengkapnya" id="btn-baca-lagi">Baca Selengkapnya ▾</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal Login Wajib -->
+  <div id="modal-login-required" style="display:none">
+    <div class="modal-box">
+      <div class="modal-icon">🔐</div>
+      <h2>Login Diperlukan</h2>
+      <p>Kamu harus login terlebih dahulu untuk menambahkan produk ke keranjang atau melakukan pembelian.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px">
+        <a href="login.html" class="btn btn-primary">Login Sekarang &rarr;</a>
+        <button class="btn btn-ghost" id="btn-modal-login-close">Nanti Saja</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 PixelPair 🩵. Web ini dibuat sebagai Proyek UAS.</p>
+        <div class="footer-bottom-links"><a href="#">Kebijakan Privasi</a><a href="#">Syarat &amp; Ketentuan</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
