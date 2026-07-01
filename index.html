@@ -54,34 +54,100 @@
     <!-- HERO BERANDA -->
     <section class="hero-section" id="beranda">
       <div class="hero-bg-glow"></div>
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <span class="hero-eyebrow">✦ Toko Elektronik Terpercaya di Medan</span>
-          <h1 class="hero-title">Teknologi Terbaik,<br><em>Harga Terjangkau</em></h1>
-          <p class="hero-desc">Temukan ribuan produk elektronik original bergaransi resmi — dari smartphone, laptop, hingga aksesoris pilihan. Dikirim langsung ke pintu rumahmu.</p>
-          <div class="hero-feat-actions-row">
-            <div class="hero-features">
-              <div class="hero-feat"><span>✅</span> Produk 100% Original</div>
-              <div class="hero-feat"><span>🛡️</span> Garansi Resmi 1–2 Tahun</div>
-              <div class="hero-feat"><span>💳</span> Cicilan 0% s/d 24 Bulan</div>
-              <div class="hero-feat"><span>📦</span> Pengiriman Aman & Cepat</div>
+      
+      <div class="hero-slider-container" style="position: relative; width: 100%;">
+        
+        <div class="hero-slide active">
+          <div class="container hero-inner">
+            <div class="hero-text">
+              <span class="hero-eyebrow">✦ Toko Elektronik Terpercaya di Medan</span>
+              <h1 class="hero-title">Teknologi Terbaik,<br><em>Harga Terjangkau</em></h1>
+              <p class="hero-desc">Temukan ribuan produk elektronik original bergaransi resmi — dari smartphone, laptop, hingga aksesoris pilihan. Dikirim langsung ke pintu rumahmu.</p>
+              <div class="hero-feat-actions-row">
+                <div class="hero-features">
+                  <div class="hero-feat"><span>✅</span> Produk 100% Original</div>
+                  <div class="hero-feat"><span>🛡️</span> Garansi Resmi 1–2 Tahun</div>
+                  <div class="hero-feat"><span>💳</span> Cicilan 0% s/d 24 Bulan</div>
+                  <div class="hero-feat"><span>📦</span> Pengiriman Aman & Cepat</div>
+                </div>
+                <div class="hero-actions">
+                  <a href="katalog.html" class="btn btn-primary btn-lg">Mulai Belanja →</a>
+                  <a href="#tentang" class="btn btn-ghost btn-lg">Tentang Toko</a>
+                </div>
+              </div>
             </div>
-            <div class="hero-actions">
-              <a href="katalog.html" class="btn btn-primary btn-lg">Mulai Belanja →</a>
-              <a href="#tentang" class="btn btn-ghost btn-lg">Tentang Toko</a>
+            <div class="hero-visual">
+              <div class="hero-card-stack">
+                <div class="hero-card hc-1">
+                  <div class="hc-icon">📱</div>
+                  <div class="hc-name">iPhone 15 Pro Max</div>
+                  <div class="hc-price">Rp 22,49jt</div>
+                  <span class="badge badge-pink">HOT</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="hero-visual">
-          <div class="hero-card-stack">
-            <div class="hero-card hc-1">
-              <div class="hc-icon">📱</div>
-              <div class="hc-name">iPhone 15 Pro Max</div>
-              <div class="hc-price">Rp 22,49jt</div>
-              <span class="badge badge-pink">HOT</span>
+
+        <div class="hero-slide">
+          <div class="container hero-inner">
+            <div class="hero-text">
+              <span class="hero-eyebrow">✦ Promo Spesial Bulan Ini</span>
+              <h1 class="hero-title">Diskon Besar,<br><em>Laptop Gaming</em></h1>
+              <p class="hero-desc">Dapatkan potongan harga hingga 20% untuk semua seri ROG, Legion, dan Predator. Jangan sampai kehabisan, stok sangat terbatas!</p>
+              <div class="hero-feat-actions-row">
+                <div class="hero-actions">
+                  <a href="katalog.html" class="btn btn-primary btn-lg">Klaim Promo →</a>
+                </div>
+              </div>
+            </div>
+            <div class="hero-visual">
+              <div class="hero-card-stack">
+                <div class="hero-card hc-1" style="transform: rotate(5deg);">
+                  <div class="hc-icon">💻</div>
+                  <div class="hc-name">ASUS ROG Zephyrus</div>
+                  <div class="hc-price">Cashback 2jt</div>
+                  <span class="badge badge-cyan">TERBATAS</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="hero-slide">
+          <div class="container hero-inner">
+            <div class="hero-text">
+              <span class="hero-eyebrow">✦ Rilis Terbaru</span>
+              <h1 class="hero-title">Rasakan Audio,<br><em>Kualitas Studio</em></h1>
+              <p class="hero-desc">Beli headphone Sony & AirPods seri terbaru minggu ini dan nikmati gratis ongkir ke seluruh Sumatera Utara.</p>
+              <div class="hero-feat-actions-row">
+                <div class="hero-actions">
+                  <a href="katalog.html" class="btn btn-primary btn-lg">Lihat Produk →</a>
+                </div>
+              </div>
+            </div>
+            <div class="hero-visual">
+              <div class="hero-card-stack">
+                <div class="hero-card hc-1">
+                  <div class="hc-icon">🎧</div>
+                  <div class="hc-name">Sony WH-1000XM5</div>
+                  <div class="hc-price">Gratis Ongkir</div>
+                  <span class="badge badge-pink">BARU</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="slider-btn slider-prev">❮</button>
+        <button class="slider-btn slider-next">❯</button>
+        
+        <div class="slider-dots">
+          <span class="slider-dot active" data-slide="0"></span>
+          <span class="slider-dot" data-slide="1"></span>
+          <span class="slider-dot" data-slide="2"></span>
+        </div>
+
       </div>
     </section>
 

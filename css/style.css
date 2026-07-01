@@ -183,6 +183,62 @@ input,select,textarea{font-family:var(--f-body);font-size:.93rem}
 .btn-lg{padding:13px 34px;font-size:.93rem}
 .btn-full{width:100%}
 
+/* Tombol Kiri Kanan Slide */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--clr-surf2);
+  color: var(--txt);
+  border: 1px solid var(--clr-border);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--tr);
+  box-shadow: var(--sh-md);
+}
+
+.slider-btn:hover {
+  background: var(--clr-cyan);
+  color: #fff;
+  border-color: var(--clr-cyan);
+}
+
+.slider-prev { left: 20px; }
+.slider-next { right: 20px; }
+
+/* Indikator Titik (Dots) */
+.slider-dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--clr-border);
+  cursor: pointer;
+  transition: all var(--tr);
+}
+
+.slider-dot.active {
+  background: var(--clr-cyan);
+  width: 24px; /* Dot aktif memanjang seperti kapsul */
+  border-radius: 6px;
+}
+
 /* BADGES */
 .badge {
   display: inline-flex;
@@ -489,7 +545,6 @@ main{padding-top:var(--nav-h)}
   font-size:.92rem
 }
 
-
 /* HERO BERANDA */
 .hero-section{
   position:relative;
@@ -505,6 +560,28 @@ main{padding-top:var(--nav-h)}
   inset:0;
   background:radial-gradient(ellipse at 70% 40%,rgba(0,198,255,.13),transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(255,60,172,.09),transparent 50%);
   pointer-events:none
+}
+
+.hero-slider-container {
+  position: relative;
+  width: 100%;
+  display: grid; /* KUNCI: Membuat semua slide menumpuk dalam 1 area */
+}
+
+.hero-slide {
+  grid-area: 1 / 1; /* Memaksa slide berada di koordinat grid yang sama */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: block !important; /* Menimpa display:none dari versi sebelumnya */
+  transition: opacity 0.5s ease-in-out; /* Menggantikan @keyframes agar lebih halus */
+}
+
+.hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 2;
 }
 
 .hero-bg-glow{
@@ -523,7 +600,7 @@ main{padding-top:var(--nav-h)}
   grid-template-columns:1fr 400px;
   gap:var(--sp-3xl);
   align-items:center;
-  padding-top:var(--sp-3xl);
+  padding-top:40px !important;
   padding-bottom:var(--sp-3xl);
   position:relative;z-index:1
 }
@@ -2040,7 +2117,116 @@ footer{
   main {
     padding-top: var(--nav-h);
   }
+
+  .slider-btn { 
+    display: none; 
+  }
   
+  .hero-slider-container {
+    padding-bottom: 24px !important; /* DIBESARKAN: Memberi ruang kosong di bawah agar tombol Klaim Promo tidak menyentuh titik navigasi */
+  }
+  
+  .slider-dots {
+    bottom: 6px;
+    gap: 6px;
+  }
+  .slider-dot {
+    width: 8px; height: 8px;
+  }
+  .slider-dot.active {
+    width: 16px; border-radius: 4px;
+  }
+
+  /* 2. SLIDE 1: POSISI TOMBOL PAS DI TENGAH DAFTAR FITUR */
+  .hero-slide:nth-child(1) .hero-feat-actions-row {
+    display: grid !important;
+    grid-template-columns: 1.1fr 0.9fr !important;
+    gap: 8px;
+    align-items: center; /* Ini yang membuat posisi vertikal sejajar tengah */
+  }
+  .hero-slide:nth-child(1) .hero-features {
+    margin-bottom: 0 !important; /* Menghapus jarak bawah bawaan agar fitur tidak mendorong tombol ke bawah */
+  }
+  .hero-slide:nth-child(1) .hero-feat {
+    font-size: 0.65rem !important;
+    gap: 4px;
+  }
+  .hero-slide:nth-child(1) .hero-actions {
+    gap: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-slide:nth-child(1) .hero-actions .btn {
+    padding: 8px 10px !important;
+    font-size: 0.72rem !important;
+    width: 100%;
+  }
+  .hero-slide:nth-child(1) .hero-visual {
+    display: none !important; /* Gambar di slide 1 tetap disembunyikan */
+  }
+
+  /* 3. SLIDE 2 & 3: GAMBAR DI SAMPING TEKS & DI ATAS TOMBOL */
+  .hero-slide:nth-child(2) .hero-inner,
+  .hero-slide:nth-child(3) .hero-inner {
+    display: grid !important;
+    grid-template-columns: 1.1fr 0.9fr !important;
+    
+    /* MENGUBAH PETA SUSUNAN: Judul sekarang mengambil 2 kolom penuh (kiri ke kanan) */
+    grid-template-areas:
+      "eyebrow eyebrow"
+      "title title"
+      "desc image"
+      "button button" !important; 
+      
+    align-items: center;
+    row-gap: 12px; /* Memberi jarak nafas antar baris */
+  }
+
+  /* Trik "display: contents" agar teks bisa diatur langsung oleh Grid pemetaan di atas */
+  .hero-slide:nth-child(2) .hero-text,
+  .hero-slide:nth-child(3) .hero-text {
+    display: contents !important;
+  }
+
+  /* Mengarahkan masing-masing elemen ke petanya */
+  .hero-slide:nth-child(2) .hero-eyebrow,
+  .hero-slide:nth-child(3) .hero-eyebrow {
+    grid-area: eyebrow;
+    justify-self: start;
+    margin-bottom: 2px !important;
+  }
+  .hero-slide:nth-child(2) .hero-title,
+  .hero-slide:nth-child(3) .hero-title {
+    grid-area: title;
+    margin-bottom: 4px !important; 
+    font-size: 1.4rem !important;
+  }
+  .hero-slide:nth-child(2) .hero-desc,
+  .hero-slide:nth-child(3) .hero-desc {
+    grid-area: desc;
+    margin-bottom: 0 !important;
+    font-size: 0.8rem !important; /* Ukuran font disesuaikan agar muat di kolom kiri */
+  }
+  .hero-slide:nth-child(2) .hero-feat-actions-row,
+  .hero-slide:nth-child(3) .hero-feat-actions-row {
+    grid-area: button;
+    margin-top: 8px;
+  }
+  
+  /* Mengatur gambar: ditaruh di area 'image' kanan */
+  .hero-slide:nth-child(2) .hero-visual,
+  .hero-slide:nth-child(3) .hero-visual {
+    grid-area: image;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end; /* Gambar merapat ke kanan */
+    transform: scale(0.6) !important; /* Ukuran gambar diperbesar sedikit dari sebelumnya */
+    transform-origin: center right !important; 
+    height: auto !important;
+    margin-top: 0 !important;
+  }
+
   /* 2. Izinkan elemen di dalam navbar turun ke baris baru (wrap) */
   nav.navbar {
     gap: 4px; 
@@ -2124,8 +2310,8 @@ footer{
 
   /* HERO — teks lebih kecil, NO 2-kolom trick */
   .hero-inner{
-    padding-top:24px;
-    padding-bottom:24px;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
     gap:16px;
     grid-template-columns:1fr; /* sudah di-handle 1024px tapi pastikan */
   }
@@ -2952,6 +3138,11 @@ footer{
     opacity: 1; 
     transform: translateY(0); /* Halaman kembali ke posisi asli */
   }
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Menerapkan animasi ke seluruh area utama (main) */

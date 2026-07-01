@@ -1179,6 +1179,62 @@ function injectLoginModal() {
     initLoginModal();
 }
 
+/* ==================================================== 
+    HERO SLIDER BERANDA
+   ==================================================== */
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    const prevBtn = document.querySelector('.slider-prev');
+    const nextBtn = document.querySelector('.slider-next');
+    
+    if(slides.length === 0) return;
+
+    let currentIdx = 0;
+    let slideInterval;
+
+    function showSlide(index) {
+        // Hilangkan kelas active dari semua slide dan dot
+        slides.forEach(s => s.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        
+        // Atur perulangan indeks
+        if (index >= slides.length) currentIdx = 0;
+        else if (index < 0) currentIdx = slides.length - 1;
+        else currentIdx = index;
+
+        // Tampilkan slide dan dot saat ini
+        slides[currentIdx].classList.add('active');
+        dots[currentIdx].classList.add('active');
+    }
+
+    function nextSlide() { showSlide(currentIdx + 1); }
+    function prevSlide() { showSlide(currentIdx - 1); }
+
+    function startAutoSlide() {
+        slideInterval = setInterval(nextSlide, 5000); // Otomatis pindah setiap 5 detik
+    }
+
+    function resetAutoSlide() {
+        clearInterval(slideInterval);
+        startAutoSlide();
+    }
+
+    // Event listener untuk tombol navigasi
+    if(nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoSlide(); });
+    if(prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoSlide(); });
+    
+    // Event listener untuk dots navigasi
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            showSlide(idx);
+            resetAutoSlide();
+        });
+    });
+
+    startAutoSlide();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Selalu jalankan di semua halaman
     injectLoginModal();
@@ -1188,6 +1244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Auth.updateUI();
 
     // Deteksi halaman berdasarkan ID atau Class unik di masing-masing HTML
+    if (document.querySelector('.hero-slider-container')) initHeroSlider();
     if (document.getElementById('keranjang-list'))   initKeranjang();
     if (document.getElementById('galeri-produk'))    initKatalog();
     if (document.getElementById('detail-img'))       initDetail();
