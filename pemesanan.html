@@ -4,10 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pemesanan — PixelPair</title>
+
+  <link rel="icon" type="image/png" href="gambar/logo PixelPair.png" />
+
+  <script>
+    (function() {
+      var theme = localStorage.getItem('pp_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -21,21 +30,22 @@
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Beranda</a></li>
-        <li><a href="index.html#tentang">Tentang Kami</a></li>
+        <li><a href="index.html#tentang">Tentang</a></li>
         <li><a href="katalog.html">Produk</a></li>
         <li><a href="riwayat.html">Riwayat</a></li>
-        <li><a href="index.html#layanan">Layanan &amp; Kontak</a></li>
+        <li><a href="index.html#layanan">Layanan</a></li>
+        <li><a href="index.html#kontak">Kontak</a></li>
       </ul>
       <div class="navbar-actions">
         <button id="theme-toggle" class="btn-icon" title="Toggle Dark/Light">
           <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
         </button>
         <a href="keranjang.html" class="btn-icon">🛒 <span class="cart-count">0</span></a>
-        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        <a href="login.html" class="btn-icon" title="Login">👤</a>
+        <label for="nav-toggle" class="hamburger-label" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </label>
       </div>
-      <label for="nav-toggle" class="hamburger-label" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </label>
     </nav>
   </header>
 
@@ -52,16 +62,6 @@
       </div>
     </section>
 
-    <div class="step-bar">
-      <div class="container">
-        <ol class="steps">
-          <li class="step active"><span class="step-num">1</span><span class="step-name">Data Pembeli</span></li>
-          <li class="step"><span class="step-num">2</span><span class="step-name">Pengiriman</span></li>
-          <li class="step"><span class="step-num">3</span><span class="step-name">Pembayaran</span></li>
-          <li class="step"><span class="step-num">4</span><span class="step-name">Konfirmasi</span></li>
-        </ol>
-      </div>
-    </div>
 
     <div class="container" style="padding-block: var(--sp-2xl)">
       <div class="pemesanan-layout">
@@ -82,8 +82,8 @@
                 <input type="text" id="pem-nama" placeholder="Nama depan" required />
               </div>
               <div class="form-group">
-                <label>Nama Belakang</label>
-                <input type="text" placeholder="Nama belakang" />
+                <label>Nama Belakang <span class="required">*</span></label>
+                <input type="text" id="pem-nama-belakang" placeholder="Nama belakang" required />
               </div>
             </div>
             <div class="form-group">
@@ -92,7 +92,14 @@
             </div>
             <div class="form-group">
               <label>No. HP <span class="required">*</span></label>
-              <input type="tel" id="pem-hp" placeholder="08xxxxxxxxxx" required />
+              <input 
+                type="tel" 
+                id="pem-hp" 
+                placeholder="08xxxxxxxxxx" 
+                required 
+                maxlength="13" 
+                inputmode="numeric" 
+              />
             </div>
           </div>
 
@@ -100,7 +107,7 @@
             <h2>📍 Alamat Pengiriman</h2>
             <div class="form-group">
               <label>Alamat Lengkap <span class="required">*</span></label>
-              <textarea id="pem-alamat" rows="3" placeholder="Nama jalan, nomor rumah, RT/RW"></textarea>
+              <textarea id="pem-alamat" rows="3" placeholder="Nama jalan, nomor rumah, RT/RW" required></textarea>
             </div>
             <div class="form-row">
               <div class="form-group">
@@ -108,25 +115,26 @@
                 <input type="text" id="pem-kota" placeholder="Medan" required />
               </div>
               <div class="form-group">
-                <label>Provinsi</label>
-                <select>
-                  <option value="">Pilih Provinsi</option>
+                <label>Provinsi <span class="required">*</span></label>
+                <select id="pem-provinsi">
+                  <option value="" selected>Pilih Provinsi</option>
                   <option selected>Sumatera Utara</option>
-                  <option>DKI Jakarta</option>
-                  <option>Jawa Barat</option>
-                  <option>Jawa Timur</option>
-                  <option>Bali</option>
+                  <option value="Sumatera Utara">Sumatera Utara</option>
+                  <option value="DKI Jakarta">DKI Jakarta</option>
+                  <option value="Jawa Barat">Jawa Barat</option>
+                  <option value="Jawa Timur">Jawa Timur</option>
+                  <option value="Bali">Bali</option>
                 </select>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label>Kode Pos</label>
-                <input type="text" placeholder="20111" />
+                <label>Kode Pos <span class="required">*</span></label>
+                <input type="text" id="pem-kodepos" placeholder="20111" required />
               </div>
               <div class="form-group">
                 <label>Catatan</label>
-                <input type="text" placeholder="Misal: titip satpam" />
+                <input type="text" id="pem-catatan" placeholder="Misal: titip satpam" />
               </div>
             </div>
           </div>
@@ -219,7 +227,7 @@
   <footer>
     <div class="container">
       <div class="footer-bottom">
-        <p>&copy; 2025 PixelPair 🩵. Web ini dibuat sebagai Proyek UAS.</p>
+        <p>&copy; 2025 PixelPair 🩵. Web ini dibuat sebagai Tugas Proyek WEB.</p>
         <div class="footer-bottom-links"><a href="#">Kebijakan Privasi</a><a href="#">Syarat &amp; Ketentuan</a></div>
       </div>
     </div>
@@ -240,6 +248,6 @@
     </div>
   </div>
 
-<script src="js/script.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
