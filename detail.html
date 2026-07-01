@@ -4,13 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Detail Produk — PixelPair</title>
+
+  <link rel="icon" type="image/png" href="gambar/logo PixelPair.png" />
+
+  <script>
+    (function() {
+      var theme = localStorage.getItem('pp_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <input type="checkbox" id="nav-toggle" />
 
   <header id="site-header">
@@ -26,12 +34,11 @@
         <li><a href="riwayat.html">Riwayat</a></li>
         <li><a href="index.html#layanan">Layanan</a></li>
         <li><a href="index.html#kontak">Kontak</a></li>
-        <li class="nav-mobile-only"><a href="login.html">👤 Login</a></li>
       </ul>
       <div class="navbar-actions">
         <button id="theme-toggle" class="btn-icon"><span class="icon-sun">☀️</span><span class="icon-moon">🌙</span></button>
         <a href="keranjang.html" class="btn-icon">🛒 <span class="cart-count">0</span></a>
-        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        <a href="login.html" class="btn-icon" title="Login">👤</a>
         <label for="nav-toggle" class="hamburger-label" aria-label="Toggle menu">
           <span></span><span></span><span></span>
         </label>
@@ -50,7 +57,7 @@
       </div>
     </section>
 
-    <div class="container" style="padding-block: var(--sp-2xl)">
+    <div class="container" style="padding-block: var(--sp-lg)">
       <div class="detail-layout">
 
         <!-- Gambar Produk -->
@@ -101,23 +108,10 @@
     </div>
   </main>
 
-  <!-- Modal Login Wajib -->
-  <div id="modal-login-required" style="display:none">
-    <div class="modal-box">
-      <div class="modal-icon">🔐</div>
-      <h2>Login Diperlukan</h2>
-      <p>Kamu harus login terlebih dahulu untuk menambahkan produk ke keranjang atau melakukan pembelian.</p>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px">
-        <a href="login.html" class="btn btn-primary">Login Sekarang &rarr;</a>
-        <button class="btn btn-ghost" id="btn-modal-login-close">Nanti Saja</button>
-      </div>
-    </div>
-  </div>
-
   <footer>
     <div class="container">
       <div class="footer-bottom">
-        <p>&copy; 2025 PixelPair 🩵. Web ini dibuat sebagai Proyek UAS.</p>
+        <p>&copy; 2025 PixelPair 🩵. Web ini dibuat sebagai Tugas Proyek WEB.</p>
         <div class="footer-bottom-links"><a href="#">Kebijakan Privasi</a><a href="#">Syarat &amp; Ketentuan</a></div>
       </div>
     </div>
