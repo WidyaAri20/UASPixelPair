@@ -2464,9 +2464,59 @@ footer{
   .page-header p{ font-size:.82rem }
   .breadcrumb{ font-size:.72rem }
 
-  /* MISC */
-  .empty-state{ padding:48px 16px }
-  .modal-box{ padding:32px 20px }
+  /* MISC & MODAL/POP-UP REVISIONS */
+  .empty-state { padding: 48px 16px; }
+  
+  /* Memastikan background modal menutupi layar dengan padding aman */
+  #modal-konfirmasi {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Mengubah ukuran kotak pop-up menjadi fleksibel */
+  #modal-konfirmasi .modal-box {
+    width: 100% !important;
+    max-width: 92% !important;   /* Memberi jarak tipis di kanan-kiri layar */
+    padding: 24px 20px !important; /* Memperkecil padding dalam agar hemat ruang */
+    border-radius: 16px !important;
+    box-sizing: border-box;
+  }
+
+  /* Menyesuaikan ukuran elemen di dalam pop-up agar proporsional */
+  #modal-konfirmasi .modal-box .modal-icon {
+    font-size: 2.5rem !important;
+    margin-bottom: 12px !important;
+  }
+
+  #modal-konfirmasi .modal-box h2 {
+    font-size: 1.4rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  #modal-konfirmasi .modal-box p {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+  }
+
+  #modal-konfirmasi .modal-order-id {
+    font-size: 1.1rem !important;
+    padding: 8px 16px !important;
+    margin-block: 16px !important;
+  }
+
+  /* Mengatur tombol aksi agar menumpuk rapi ke bawah jika ruang sempit */
+  #modal-konfirmasi .modal-box style, 
+  #modal-konfirmasi .modal-box div[style*="display:flex"] {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  
+  #modal-konfirmasi .modal-box .btn {
+    width: 100% !important; /* Tombol menjadi full-width di mobile */
+    text-align: center;
+  }
 }
 
 /* ─── MOBILE KECIL (≤400px) ─── */
@@ -2507,11 +2557,51 @@ footer{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.6) !important;
   z-index:9998;
   align-items:center;
   justify-content:center;
   padding:20px
+}
+
+/* Kotak Modal Utama */
+#modal-konfirmasi .modal-box {
+  background: var(--clr-surf) !important; /* Otomatis putih di Light, gelap di Dark */
+  border: 1px solid var(--clr-border) !important; /* Otomatis menyesuaikan garis tepi */
+  color: var(--txt) !important; /* Teks otomatis gelap di Light, terang di Dark */
+  box-shadow: var(--sh-md) !important;
+}
+
+#modal-konfirmasi .modal-box .modal-icon {
+  color: #00C6FF !important; /* Ikon sukses/centang menjadi Cyan */
+}
+
+#modal-konfirmasi .modal-box h2 {
+  color: var(--txt) !important; /* Judul mengikuti warna teks tema */
+}
+
+#modal-konfirmasi .modal-box p {
+  color: var(--txt2) !important; /* Teks paragraf menggunakan warna teks sekunder */
+}
+
+#modal-konfirmasi .modal-order-id {
+  background: var(--clr-surf2) !important; /* Otomatis abu-abu terang di Light, navy di Dark */
+  color: var(--clr-cyan) !important; 
+  border: 1px dashed var(--clr-cyan) !important;
+}
+
+/* Mengatur Semua Tombol di dalam Modal Box */
+#modal-konfirmasi .modal-box .btn {
+  background: linear-gradient(135deg, #00C6FF, #0072FF) !important; /* Gradasi Cyan ke Biru */
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#modal-konfirmasi .modal-box .btn:hover {
+  background: linear-gradient(135deg, #0072FF, #00C6FF) !important;
+  box-shadow: 0 0 15px rgba(0, 198, 255, 0.5); /* Efek glow saat tombol di-hover */
 }
 
 .modal-box {

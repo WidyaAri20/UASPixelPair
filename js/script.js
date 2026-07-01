@@ -107,15 +107,28 @@ function showToast(msg, type = 'success') {
     const toast = document.createElement('div');
     toast.id = 'pp-toast';
     toast.textContent = msg;
+    
+    // MENGGUNAKAN CSS VARIABLES AGAR OTOMATIS BERUBAH SAAT KLIK TEMA
+    const bgColor = type === 'error' ? '#EF4444' : 'var(--clr-surf)'; 
+    const textColor = type === 'error' ? '#fff' : 'var(--txt)';
+    const borderColor = type === 'error' ? '#EF4444' : 'var(--clr-cyan)';
+
     toast.style.cssText = `
         position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
-        background:${type === 'error' ? '#EF4444' : '#111827'};
-        color:#fff; padding:12px 24px; border-radius:12px;
-        font-size:.88rem; font-weight:600; z-index:99999;
-        border:1px solid ${type === 'error' ? '#EF4444' : '#00C6FF'};
-        box-shadow:0 8px 24px rgba(0,0,0,.4);
+        background: ${bgColor};
+        color: ${textColor}; 
+        padding: 12px 20px; border-radius:12px;
+        font-size:.85rem; font-weight:600; z-index:99999;
+        border: 1px solid ${borderColor};
+        box-shadow: var(--sh-md);
         animation:ppToastIn .25s ease;
-        white-space:nowrap;
+        
+        /* Pengaturan responsif mobile */
+        width: calc(100% - 32px);  
+        max-width: 380px;          
+        text-align: center;        
+        white-space: normal;       
+        box-sizing: border-box;
     `;
 
     if (!document.getElementById('pp-toast-style')) {
