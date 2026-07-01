@@ -4,45 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PixelPair — Toko Elektronik Terpercaya</title>
+
+  <link rel="icon" type="image/png" href="gambar/logo PixelPair.png" />
+
+  <script>
+    (function() {
+      var theme = localStorage.getItem('pp_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <input type="checkbox" id="nav-toggle" />
 
-  <!-- Checkbox dark/light mode -->
-  <input type="checkbox" id="theme-toggle-cb" />
-
   <header id="site-header">
     <nav class="navbar container">
       <a href="index.html" class="navbar-brand">
-        <div class="logo-mark">
-          <span class="sq sq-cyan"></span>
-          <span class="sq sq-pink"></span>
-          <span class="sq sq-gray"></span>
-        </div>
+        <div class="logo-mark"><span class="sq sq-cyan"></span><span class="sq sq-pink"></span><span class="sq sq-gray"></span></div>
         <span class="brand-text">Pixel<span>Pair</span></span>
       </a>
-
       <ul class="nav-links">
         <li><a href="index.html" class="active">Beranda</a></li>
         <li><a href="index.html#tentang">Tentang</a></li>
         <li><a href="katalog.html">Produk</a></li>
         <li><a href="riwayat.html">Riwayat</a></li>
         <li><a href="index.html#layanan">Layanan</a></li>
-        <li><a href="#kontak">Kontak</a></li>
+        <li><a href="index.html#kontak">Kontak</a></li>
       </ul>
-
       <div class="navbar-actions">
-        <label for="theme-toggle-cb" class="btn-icon theme-toggle-label" title="Toggle Dark/Light">
-          <span class="icon-sun">☀️</span>
-          <span class="icon-moon">🌙</span>
-        </label>
+        <button id="theme-toggle" class="btn-icon" title="Toggle Dark/Light">
+          <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
+        </button>
         <a href="keranjang.html" class="btn-icon">🛒 <span class="cart-count">0</span></a>
-        <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        <a href="login.html" class="btn-icon" title="Login">👤</a>
         <label for="nav-toggle" class="hamburger-label" aria-label="Toggle menu">
           <span></span><span></span><span></span>
         </label>
@@ -50,7 +49,7 @@
     </nav>
   </header>
 
-  <main>
+  <main role="main">
 
     <!-- HERO BERANDA -->
     <section class="hero-section" id="beranda">
@@ -59,16 +58,18 @@
         <div class="hero-text">
           <span class="hero-eyebrow">✦ Toko Elektronik Terpercaya di Medan</span>
           <h1 class="hero-title">Teknologi Terbaik,<br><em>Harga Terjangkau</em></h1>
-          <p class="hero-desc">Temukan ribuan produk elektronik original bergaransi resmi — dari smartphone, laptop, hingga aksesori pilihan. Dikirim langsung ke pintu rumahmu.</p>
-          <div class="hero-features">
-            <div class="hero-feat"><span>✅</span> Produk 100% Original</div>
-            <div class="hero-feat"><span>🛡️</span> Garansi Resmi 1–2 Tahun</div>
-            <div class="hero-feat"><span>💳</span> Cicilan 0% s/d 24 Bulan</div>
-            <div class="hero-feat"><span>📦</span> Pengiriman Aman & Cepat</div>
-          </div>
-          <div class="hero-actions">
-            <a href="katalog.html" class="btn btn-primary btn-lg">Mulai Belanja →</a>
-            <a href="#tentang" class="btn btn-ghost btn-lg">Tentang Toko</a>
+          <p class="hero-desc">Temukan ribuan produk elektronik original bergaransi resmi — dari smartphone, laptop, hingga aksesoris pilihan. Dikirim langsung ke pintu rumahmu.</p>
+          <div class="hero-feat-actions-row">
+            <div class="hero-features">
+              <div class="hero-feat"><span>✅</span> Produk 100% Original</div>
+              <div class="hero-feat"><span>🛡️</span> Garansi Resmi 1–2 Tahun</div>
+              <div class="hero-feat"><span>💳</span> Cicilan 0% s/d 24 Bulan</div>
+              <div class="hero-feat"><span>📦</span> Pengiriman Aman & Cepat</div>
+            </div>
+            <div class="hero-actions">
+              <a href="katalog.html" class="btn btn-primary btn-lg">Mulai Belanja →</a>
+              <a href="#tentang" class="btn btn-ghost btn-lg">Tentang Toko</a>
+            </div>
           </div>
         </div>
         <div class="hero-visual">
@@ -104,72 +105,80 @@
           <h2>Produk Unggulan</h2>
           <p>Koleksi elektronik terlaris dengan kualitas original dan harga kompetitif</p>
         </div>
-        <div class="produk-grid">
+        <div class="produk-grid" id="galeri-unggulan">
           <article class="produk-card">
             <div class="produk-img-wrap">
-              <img src="gambar/iphone-15-pro-max.png" alt="iPhone 15 Pro Max 256GB" loading="lazy" />
+              <a href="detail.html?id=iphone-15" class="produk-img-link">
+                <img src="gambar/Iphone 15 Pro.jpeg" alt="iPhone 15 Pro Max 256GB" loading="lazy" />
+              </a>
               <div class="produk-badge-wrap"><span class="badge badge-pink">HOT</span></div>
             </div>
             <div class="produk-body">
               <p class="produk-kategori">Smartphone</p>
               <h3 class="produk-name">iPhone 15 Pro Max 256GB</h3>
               <div class="produk-rating">★★★★★ <span>(312)</span></div>
-              <div class="produk-harga-row"><span class="produk-harga">Rp 22,49jt</span></div>
+              <div class="produk-harga-row"><span class="produk-harga">Rp22.490.000</span></div>
             </div>
             <div class="produk-footer">
-              <a href="keranjang.html" class="btn btn-outline btn-sm">+ Keranjang</a>
-              <a href="pemesanan.html" class="btn btn-primary btn-sm">Beli</a>
+              <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="iphone-15">+ Keranjang</button>
+              <button class="btn btn-primary btn-sm" data-action="beli" data-id="iphone-15">Beli</button>
             </div>
           </article>
 
           <article class="produk-card">
             <div class="produk-img-wrap">
-              <img src="gambar/ASUS ROG Zephyrus G14 2024.jpg" alt="ASUS ROG Zephyrus G14 2024" loading="lazy" />
+              <a href="detail.html?id=rog-g14" class="produk-img-link">
+                <img src="gambar/ASUS ROG Zephyrus G14 2024.jpg" alt="ASUS ROG Zephyrus G14 2024" loading="lazy" />
+              </a>
               <div class="produk-badge-wrap"><span class="badge badge-cyan">BARU</span></div>
             </div>
             <div class="produk-body">
               <p class="produk-kategori">Laptop</p>
               <h3 class="produk-name">ASUS ROG Zephyrus G14 2024</h3>
               <div class="produk-rating">★★★★★ <span>(189)</span></div>
-              <div class="produk-harga-row"><span class="produk-harga">Rp 27,49jt</span></div>
+              <div class="produk-harga-row"><span class="produk-harga">Rp27.490.000</span></div>
             </div>
             <div class="produk-footer">
-              <a href="keranjang.html" class="btn btn-outline btn-sm">+ Keranjang</a>
-              <a href="pemesanan.html" class="btn btn-primary btn-sm">Beli</a>
+              <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="rog-g14">+ Keranjang</button>
+              <button class="btn btn-primary btn-sm" data-action="beli" data-id="rog-g14">Beli</button>
             </div>
           </article>
 
           <article class="produk-card">
             <div class="produk-img-wrap">
-              <img src="gambar/Sony-WH1000XM5-2.png" alt="Sony WH-1000XM5 Headphone" loading="lazy" />
+              <a href="detail.html?id=sony-wh" class="produk-img-link">
+                <img src="gambar/Sony-WH1000XM5-2.png" alt="Sony WH-1000XM5 Headphone" loading="lazy" />
+              </a>
               <div class="produk-badge-wrap"><span class="badge badge-amber">DISKON</span></div>
             </div>
             <div class="produk-body">
               <p class="produk-kategori">Audio</p>
               <h3 class="produk-name">Sony WH-1000XM5 Headphone</h3>
               <div class="produk-rating">★★★★★ <span>(421)</span></div>
-              <div class="produk-harga-row"><span class="produk-harga">Rp 4,29jt</span></div>
+              <div class="produk-harga-row"><span class="produk-harga">Rp4.290.000</span></div>
             </div>
             <div class="produk-footer">
-              <a href="keranjang.html" class="btn btn-outline btn-sm">+ Keranjang</a>
-              <a href="pemesanan.html" class="btn btn-primary btn-sm">Beli</a>
+              <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="sony-wh">+ Keranjang</button>
+              <button class="btn btn-primary btn-sm" data-action="beli" data-id="sony-wh">Beli</button>
             </div>
           </article>
 
           <article class="produk-card">
             <div class="produk-img-wrap">
-              <img src="gambar/Apple Watch Series 9 GPS 45mm.webp" alt="Apple Watch Series 9 GPS 45mm" loading="lazy" />
+              <a href="detail.html?id=applewatch" class="produk-img-link">
+                <img src="gambar/Apple Watch Series 9 GPS 45mm.webp" alt="Apple Watch Series 9 GPS 45mm" loading="lazy" />
+              </a>
               <div class="produk-badge-wrap"><span class="badge badge-green">TERBATAS</span></div>
             </div>
             <div class="produk-body">
               <p class="produk-kategori">Wearable</p>
               <h3 class="produk-name">Apple Watch Series 9 GPS 45mm</h3>
               <div class="produk-rating">★★★★ <span>(98)</span></div>
-              <div class="produk-harga-row"><span class="produk-harga">Rp 7,49jt</span></div>
+              <div class="produk-harga-row"><span class="produk-harga">Rp7.490.000</span></div>
             </div>
             <div class="produk-footer">
-              <a href="keranjang.html" class="btn btn-outline btn-sm">+ Keranjang</a>
-              <a href="pemesanan.html" class="btn btn-primary btn-sm">Beli</a>
+              <button class="btn btn-outline btn-sm" data-action="add-cart" data-id="applewatch">+ Keranjang</button>
+              <button class="btn btn-primary btn-sm" data-action="beli" data-id="applewatch">Beli</button>
             </div>
           </article>
         </div>
@@ -326,7 +335,7 @@
   </main>
 
   <!-- FOOTER -->
-  <footer id="kontak">
+  <footer id="kontak" role="contentinfo">
     <div class="container">
       <div class="footer-main">
         <div class="footer-brand-col">
@@ -342,7 +351,7 @@
             <a href="https://www.facebook.com/profile.php?id=61589190771979&sk=about" class="social-btn" title="Facebook">
               <img src="https://cdn.simpleicons.org/facebook/ffffff" width="16" height="16" alt="Facebook" loading="lazy" />
             </a>
-            <a href="#" class="social-btn" title="X (Twitter)">
+            <a href="https://x.com/PixelPair25" class="social-btn" title="X (Twitter)">
               <img src="https://cdn.simpleicons.org/x/ffffff" width="16" height="16" alt="X" loading="lazy" />
             </a>
           </div>
@@ -360,11 +369,11 @@
         <div class="footer-col">
           <h4>Layanan</h4>
           <ul class="footer-links">
-            <li><a href="#">Garansi &amp; Retur</a></li>
-            <li><a href="#">Cicilan 0%</a></li>
-            <li><a href="#">Service Center</a></li>
-            <li><a href="#">Konsultasi Gratis</a></li>
-            <li><a href="#">Packing Aman</a></li>
+            <li><a>Garansi &amp; Retur</a></li>
+            <li><a>Cicilan 0%</a></li>
+            <li><a>Service Center</a></li>
+            <li><a>Konsultasi Gratis</a></li>
+            <li><a>Packing Aman</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -378,12 +387,12 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 PixelPair 🩵. Web ini dibuat sebagai Proyek UAS.</p>
+        <p>&copy; 2025 PixelPair 🩵. Web ini dibuat sebagai Tugas Proyek WEB.</p>
         <div class="footer-bottom-links"><a href="#">Kebijakan Privasi</a><a href="#">Syarat &amp; Ketentuan</a></div>
       </div>
     </div>
   </footer>
 
-<script src="js/script.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
