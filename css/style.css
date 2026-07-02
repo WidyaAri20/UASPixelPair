@@ -2814,8 +2814,8 @@ footer{
   .form-group select option {
     font-size: 0.6rem;
     padding: 2px 2px;
-    background-color: #111827;
-    color: #F1F5F9;
+    background-color: var(--clr-surf);
+    color: var(--txt);
   }
 
   /* LOGIN */
@@ -2865,8 +2865,8 @@ footer{
   .riwayat-toolbar select option {
     font-size: 0.5rem;
     padding: 2px 6px;
-    background-color: #111827;
-    color: #F1F5F9;
+    background-color: var(--clr-surf);
+    color: var(--txt);
   }
   
   .riwayat-toolbar .btn {
