@@ -811,7 +811,6 @@ function initPemesanan() {
         }
     }
 
-    // Ongkir change
     ongkirRadios.forEach(r => r.addEventListener('change', kalkulasi));
 
     // Promo
