@@ -63,7 +63,8 @@
     </section>
 
 
-    <div class="container" style="padding-block: var(--sp-2xl)">
+    <div class="container">
+      <form id="form-checkout">
       <div class="pemesanan-layout">
         <div>
 
@@ -192,7 +193,7 @@
             <h2>🎁 Kode Promo</h2>
             <div class="promo-wrap">
               <input type="text" id="pem-promo-input" placeholder="Masukkan kode promo" />
-              <button class="btn btn-outline btn-sm" data-action="apply-promo">Gunakan</button>
+              <button type="button" class="btn btn-outline btn-sm" data-action="apply-promo">Gunakan</button>
             </div>
             <p class="promo-hint">💡 PIXELNEW10 · HEMAT20 · GRATISONGKIR</p>
           </div>
@@ -215,11 +216,12 @@
               <p>✅ Pengiriman aman + asuransi</p>
               <p>✅ Bisa dikembalikan dalam 7 hari</p>
             </div>
-            <button class="btn btn-primary btn-full" id="btn-konfirmasi" style="margin-top:var(--sp-lg)">Konfirmasi Pesanan →</button>
+            <button type="submit" class="btn btn-primary btn-full" id="btn-konfirmasi" style="margin-top:var(--sp-lg)">Konfirmasi Pesanan →</button>
             <a href="keranjang.html" class="link-back">← Kembali ke Keranjang</a>
           </div>
         </aside>
       </div>
+      </form>
     </div>
   </main>
 

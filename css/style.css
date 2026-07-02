@@ -2804,8 +2804,19 @@ footer{
   .cart-empty div[style*="font-size:3.5rem"] {margin-bottom: 5px;}
 
   /* PEMESANAN */
-  .pemesanan-layout{ grid-template-columns:1fr }
+  .pemesanan-layout{ 
+    grid-template-columns:1fr;
+    padding-top: 16px;
+    padding-bottom: 24px; 
+  }
   .form-row{ grid-template-columns:1fr }
+
+  .form-group select option {
+    font-size: 0.6rem;
+    padding: 2px 2px;
+    background-color: #111827;
+    color: #F1F5F9;
+  }
 
   /* LOGIN */
   .login-main{ padding:24px 16px }
@@ -2958,9 +2969,6 @@ footer{
   /* Memastikan background modal menutupi layar dengan padding aman */
   #modal-konfirmasi {
     padding: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   /* Mengubah ukuran kotak pop-up menjadi fleksibel */

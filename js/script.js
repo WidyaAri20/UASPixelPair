@@ -802,7 +802,11 @@ function initPemesanan() {
         if (ri) {
             ri.innerHTML = Object.entries(items).map(([id, qty]) => {
                 const p = PRODUK_DATA[id]; if (!p) return '';
-                return `<div class="hitung-row"><span>${p.nama} ×${qty}</span><span>${fmt(p.harga * qty)}</span></div>`;
+                return `
+                    <div class="hitung-row ringkasan-item-row">
+                        <span class="nama-qty">${p.nama} &times;${qty}</span>
+                        <span class="harga-sub">${fmt(p.harga * qty)}</span>
+                    </div>`;
             }).join('');
         }
     }
@@ -820,9 +824,11 @@ function initPemesanan() {
         kalkulasi();
     });
 
-    // Konfirmasi pesanan
-    document.getElementById('btn-konfirmasi')?.addEventListener('click', () => {
-        // Validasi form (Tambahkan variabel baru)
+    const formCheckout = document.getElementById('form-checkout');
+    formCheckout?.addEventListener('submit', (e) => {
+        e.preventDefault(); // Mencegah halaman memuat ulang otomatis
+
+        // Logika pengambilan data dari form input
         const nama         = document.getElementById('pem-nama')?.value.trim();
         const namaBelakang = document.getElementById('pem-nama-belakang')?.value.trim();
         const email        = document.getElementById('pem-email')?.value.trim();
@@ -833,44 +839,47 @@ function initPemesanan() {
         const kodepos      = document.getElementById('pem-kodepos')?.value.trim();
 
         // Cek satu-satu apakah ada yang kosong
-        if (!nama)         { showToast('⚠️ Nama depan wajib diisi', 'error'); document.getElementById('pem-nama')?.focus(); return; }
+        if (!nama) { showToast('⚠️ Nama depan wajib diisi', 'error'); document.getElementById('pem-nama')?.focus(); return; }
         if (!namaBelakang) { showToast('⚠️ Nama belakang wajib diisi', 'error'); document.getElementById('pem-nama-belakang')?.focus(); return; }
         if (!email || !email.includes('@')) { showToast('⚠️ Email tidak valid', 'error'); document.getElementById('pem-email')?.focus(); return; }
-        if (!hp || hp.length < 9)  { showToast('⚠️ Nomor HP tidak valid', 'error'); document.getElementById('pem-hp')?.focus(); return; }
-        if (!alamat)       { showToast('⚠️ Alamat pengiriman wajib diisi', 'error'); document.getElementById('pem-alamat')?.focus(); return; }
-        if (!kota)         { showToast('⚠️ Kota wajib diisi', 'error'); document.getElementById('pem-kota')?.focus(); return; }
-        if (!provinsi)     { showToast('⚠️ Provinsi wajib dipilih', 'error'); document.getElementById('pem-provinsi')?.focus(); return; }
-        if (!kodepos)      { showToast('⚠️ Kode pos wajib diisi', 'error'); document.getElementById('pem-kodepos')?.focus(); return; }
+        if (!hp || hp.length < 9) { showToast('⚠️ Nomor HP tidak valid', 'error'); document.getElementById('pem-hp')?.focus(); return; }
+        if (!alamat) { showToast('⚠️ Alamat pengiriman wajib diisi', 'error'); document.getElementById('pem-alamat')?.focus(); return; }
+        if (!kota) { showToast('⚠️ Kota wajib diisi', 'error'); document.getElementById('pem-kota')?.focus(); return; }
+        if (!provinsi) { showToast('⚠️ Provinsi wajib dipilih', 'error'); document.getElementById('pem-provinsi')?.focus(); return; }
+        if (!kodepos) { showToast('⚠️ Kode pos wajib diisi', 'error'); document.getElementById('pem-kodepos')?.focus(); return; }
         
         if (getOrderCount() === 0) { showToast('⚠️ Tidak ada produk untuk dipesan', 'error'); return; }
 
         // Generate order
         const orderId = Riwayat.generateId();
-        const items   = getOrderItems();
+        const items = getOrderItems();
         const produkList = Object.entries(items).map(([id, qty]) => {
             const p = PRODUK_DATA[id]; return p ? `${p.nama} ×${qty}` : '';
         }).filter(Boolean).join('<br>');
 
-        const bayar     = document.querySelector('input[name="bayar"]:checked')?.value || 'bca';
+        const bayar = document.querySelector('input[name="bayar"]:checked')?.value || 'bca';
         const bayarLabel = { bca:'Bank BCA', mandiri:'Bank Mandiri', bni:'Bank BNI', gopay:'GoPay', ovo:'OVO', dana:'DANA', qris:'QRIS', cod:'COD', 'cicilan-6':'Cicilan 6 Bln', 'cicilan-12':'Cicilan 12 Bln', 'cicilan-24':'Cicilan 24 Bln' };
 
-        const subtotal  = getOrderTotal();
+        const subtotal = getOrderTotal();
         const afterDisk = subtotal * (1 - diskon);
-        const ongkir    = getOngkir();
-        const ppn       = Math.round(afterDisk * 0.11);
-        const total     = Math.round(afterDisk + ongkir + ppn);
+        const ongkir = getOngkir();
+        const ppn = Math.round(afterDisk * 0.11);
+        const total = Math.round(afterDisk + ongkir + ppn);
 
         const now = new Date();
         const tanggal = now.toLocaleDateString('id-ID', { day:'2-digit', month:'short', year:'numeric' });
 
         // Simpan ke riwayat
         Riwayat.add({
-            id:     orderId,
+            id: orderId,
             tanggal: tanggal,
+            nama: nama + ' ' + namaBelakang,
+            hp: hp,
+            alamat: alamat + ', ' + kota + ', ' + provinsi + ' (' + kodepos + ')',
             produk: produkList,
-            qty:    getOrderCount(),
-            bayar:  bayarLabel[bayar] || bayar,
-            total:  total,
+            qty: getOrderCount(),
+            bayar: bayarLabel[bayar] || bayar,
+            total: total,
             status: 'proses'
         });
 
@@ -1026,6 +1035,11 @@ function initRiwayat() {
             <tr>
                 <td><strong style="color:var(--clr-cyan);font-size:.85rem">#${row.id}</strong></td>
                 <td style="color:var(--txt2);font-size:.83rem">${row.tanggal}</td>
+                <td style="text-align:left; font-size:.8rem; max-width:220px; white-space:normal; word-break:break-word;">
+                    <strong>${row.nama || '—'}</strong><br>
+                    <span style="color:var(--txt3); font-size:.75rem;">${row.hp || ''}</span><br>
+                    <span style="font-size:.75rem; color:var(--txt2); line-height:1.3; display:block; margin-top:2px;">${row.alamat || ''}</span>
+                </td>
                 <td style="text-align:left; font-size:.85rem; white-space:nowrap">${row.produk.split(', ').join('<br>')}</td>
                 <td style="text-align:center">${row.qty}</td>
                 <td style="font-size:.85rem">${row.bayar}</td>
@@ -1036,7 +1050,6 @@ function initRiwayat() {
         }).join('');
         attachBatalHandlers(tbody);
 
-        // ===== Render CARD (mobile) =====
         if (cardsWrap) {
             cardsWrap.innerHTML = filtered.map(row => {
                 const bisaBatal = row.status === 'proses';
@@ -1047,6 +1060,10 @@ function initRiwayat() {
                         ${STATUS_LABEL[row.status] || row.status}
                     </div>
                     <p class="riwayat-card-produk">${row.produk.split(', ').join('<br>')}</p>
+                    <p style="font-size:.75rem; color:var(--txt2); margin-bottom:10px; border-left:2px solid var(--clr-cyan); padding-left:6px; line-height:1.4; text-align:left;">
+                        Penerima: <strong>${row.nama || '—'}</strong> (${row.hp || ''})<br>
+                        Alamat: ${row.alamat || ''}
+                    </p>
                     <div class="riwayat-card-meta">
                         <span>${row.tanggal}</span>
                         <span>•</span>
