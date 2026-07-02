@@ -96,8 +96,9 @@ const PRODUK_DATA = {
 };
 
 /* =======================
-    UTILITAS
+    UTILITAS & KONSTANTA
    ======================= */
+const PROMOS = { PIXELNEW10: 0.10, HEMAT20: 0.20, GRATISONGKIR: 'free' };
 const fmt = (n) => 'Rp ' + n.toLocaleString('id-ID');
 
 function showToast(msg, type = 'success') {
@@ -130,13 +131,6 @@ function showToast(msg, type = 'success') {
         white-space: normal;       
         box-sizing: border-box;
     `;
-
-    if (!document.getElementById('pp-toast-style')) {
-        const s = document.createElement('style');
-        s.id = 'pp-toast-style';
-        s.textContent = '@keyframes ppToastIn{from{opacity:0;transform:translateX(-50%) translateY(16px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}';
-        document.head.appendChild(s);
-    }
 
     document.body.appendChild(toast);
     setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity .3s'; setTimeout(() => toast.remove(), 300); }, 2500);
@@ -399,7 +393,6 @@ function initKeranjang() {
 
     if (!listEl) return;
 
-    const PROMOS = { PIXELNEW10: 0.10, HEMAT20: 0.20, GRATISONGKIR: 'free' };
     let diskon = 0;
     let freeOngkir = false;
 
@@ -729,7 +722,6 @@ function initPemesanan() {
 
     const ongkirRadios = document.querySelectorAll('input[name="pengiriman"]');
     const ONGKIR_PRICE = { 'jne-reg': 25000, 'jne-yes': 55000, 'sicepat': 20000, 'jnt': 22000, 'gosend': 35000 };
-    const PROMOS       = { PIXELNEW10: 0.10, HEMAT20: 0.20, GRATISONGKIR: 'free' };
 
     let diskon = 0;
     let freeOngkir = false;
