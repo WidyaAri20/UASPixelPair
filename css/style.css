@@ -40,6 +40,7 @@
 
 /* VARIABEL TEMA TERANG */
 [data-theme="light"] {
+  color-scheme: light;
   --clr-bg: #F8FAFC;
   --clr-surf: #FFFFFF;
   --clr-surf2: #F1F5F9;
@@ -55,6 +56,7 @@
 
 /* VARIABEL TEMA GELAP */
 [data-theme="dark"] {
+  color-scheme: dark;
   --clr-bg: #0A0E1A;
   --clr-surf: #111827;
   --clr-surf2: #1C2333;
@@ -2348,7 +2350,8 @@ footer{
   .hero-slide:nth-child(1) .hero-feat { font-size: 0.62rem; }
   .hero-card-stack { transform: scale(0.85); transform-origin: right center; }
   .stat-item { padding: 24px 8px; }
-  .katalog-layout, .pemesanan-layout {grid-template-columns: 200px 1fr; gap: var(--sp-lg);}
+  .katalog-layout { grid-template-columns: 200px 1fr; gap: var(--sp-lg); }
+  .pemesanan-layout { grid-template-columns: 1fr 400px; gap: var(--sp-lg); }
   .sidebar-filter {padding: var(--sp-md, 14px);position: static; }
   .sidebar-filter h3 {font-size: .78rem; margin-bottom: var(--sp-md, 14px);}
   .filter-opt {font-size: .78rem; padding: 5px 0;}
@@ -2811,11 +2814,11 @@ footer{
   }
   .form-row{ grid-template-columns:1fr }
 
-  .form-group select option {
-    font-size: 0.6rem;
-    padding: 2px 2px;
-    background-color: var(--clr-surf);
-    color: var(--txt);
+  .form-card {padding: 16px; margin-bottom: 16px; border-radius: var(--r-md);}
+  .form-card h2 {font-size: 0.88rem;margin-bottom: 12px;padding-bottom: 10px;}
+  .form-group select {
+    font-size: 0.8rem;
+    padding: 8px 12px;
   }
 
   /* LOGIN */
@@ -2857,16 +2860,12 @@ footer{
     padding: 8px 10px; 
     font-size: 0.8rem;
     box-sizing: border-box;
-    background-color: var(--clr-surf);
-    color: var(--txt);
   }
 
   /* Tampilan Kotak Isi (Option) */
   .riwayat-toolbar select option {
     font-size: 0.5rem;
     padding: 2px 6px;
-    background-color: var(--clr-surf);
-    color: var(--txt);
   }
   
   .riwayat-toolbar .btn {

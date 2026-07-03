@@ -376,7 +376,9 @@ function initLoginModal() {
     const modal   = document.getElementById('modal-login-required');
     if (!modal) return;
     const closeBtn = document.getElementById('btn-modal-login-close');
-    closeBtn?.addEventListener('click', () => { modal.style.display = 'none'; });
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+    }
     modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
 }
 
@@ -495,14 +497,19 @@ function initKeranjang() {
     }
 
     // Promo
-    document.querySelector('[data-action="apply-promo"]')?.addEventListener('click', () => {
-        const kode = promoInput?.value.trim().toUpperCase();
-        if (!kode) { showToast('Masukkan kode promo terlebih dahulu', 'error'); return; }
-        if (PROMOS[kode] === undefined) { showToast('❌ Kode promo tidak valid', 'error'); return; }
-        if (PROMOS[kode] === 'free') { freeOngkir = true; diskon = 0; showToast('🎉 Ongkos kirim GRATIS!'); }
-        else { diskon = PROMOS[kode]; freeOngkir = false; showToast(`🎉 Diskon ${diskon * 100}% berhasil diterapkan!`); }
-        render();
-    });
+    const btnPromo = document.querySelector('[data-action="apply-promo"]');
+    if (btnPromo) {
+        btnPromo.addEventListener('click', () => {
+            // PERBAIKAN DI BARIS INI:
+            const kode = promoInput ? promoInput.value.trim().toUpperCase() : '';
+            
+            if (!kode) { showToast('Masukkan kode promo terlebih dahulu', 'error'); return; }
+            if (PROMOS[kode] === undefined) { showToast('❌ Kode promo tidak valid', 'error'); return; }
+            if (PROMOS[kode] === 'free') { freeOngkir = true; diskon = 0; showToast('🎉 Ongkos kirim GRATIS!'); }
+            else { diskon = PROMOS[kode]; freeOngkir = false; showToast(`🎉 Diskon ${diskon * 100}% berhasil diterapkan!`); }
+            render();
+        });
+    }
 
     // Hapus semua
     document.querySelector('[data-action="hapus-semua"]')?.addEventListener('click', () => {
@@ -538,15 +545,21 @@ function initKatalog() {
     }
 
     function filterCards() {
-        const katVal = document.querySelector('input[name="kategori"]:checked')?.value || 'semua';
-        const q      = (searchInput?.value || '').toLowerCase().trim();
+        const elKat = document.querySelector('input[name="kategori"]:checked');
+        const katVal = elKat ? elKat.value : 'semua';
+        
+        // PERBAIKAN 1: Hilangkan ?. pada searchInput
+        const q = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
         let visible = 0;
         cards.forEach(card => {
-            const kat  = card.dataset.kategori || '';
-            const name = card.querySelector('.produk-name')?.textContent.toLowerCase() || '';
+            const kat = card.dataset.kategori || '';
+            
+            // PERBAIKAN 2: Hilangkan ?. pada pencarian nama produk
+            const elName = card.querySelector('.produk-name');
+            const name = elName ? elName.textContent.toLowerCase() : '';
 
-            const katMatch    = katVal === 'semua' || kat === katVal;
+            const katMatch = katVal === 'semua' || kat === katVal;
             const searchMatch = q === '' || name.includes(q);
 
             const show = katMatch && searchMatch;
@@ -824,86 +837,103 @@ function initPemesanan() {
     });
 
     const formCheckout = document.getElementById('form-checkout');
-    formCheckout?.addEventListener('submit', (e) => {
-        e.preventDefault(); // Mencegah halaman memuat ulang otomatis
+    if (formCheckout) {
+        formCheckout.addEventListener('submit', (e) => {
+            e.preventDefault(); // Mencegah halaman memuat ulang otomatis
 
-        // Logika pengambilan data dari form input
-        const nama         = document.getElementById('pem-nama')?.value.trim();
-        const namaBelakang = document.getElementById('pem-nama-belakang')?.value.trim();
-        const email        = document.getElementById('pem-email')?.value.trim();
-        const hp           = document.getElementById('pem-hp')?.value.trim();
-        const alamat       = document.getElementById('pem-alamat')?.value.trim();
-        const kota         = document.getElementById('pem-kota')?.value.trim();
-        const provinsi     = document.getElementById('pem-provinsi')?.value.trim();
-        const kodepos      = document.getElementById('pem-kodepos')?.value.trim();
+            // Semua kode di bawah ini sudah sejajar dengan e.preventDefault()
+            const elNama = document.getElementById('pem-nama');
+            const nama = elNama ? elNama.value.trim() : '';
+            
+            const elNamaBelakang = document.getElementById('pem-nama-belakang');
+            const namaBelakang = elNamaBelakang ? elNamaBelakang.value.trim() : '';
 
-        // Cek satu-satu apakah ada yang kosong
-        if (!nama) { showToast('⚠️ Nama depan wajib diisi', 'error'); document.getElementById('pem-nama')?.focus(); return; }
-        if (!namaBelakang) { showToast('⚠️ Nama belakang wajib diisi', 'error'); document.getElementById('pem-nama-belakang')?.focus(); return; }
-        if (!email || !email.includes('@')) { showToast('⚠️ Email tidak valid', 'error'); document.getElementById('pem-email')?.focus(); return; }
-        if (!hp || hp.length < 9) { showToast('⚠️ Nomor HP tidak valid', 'error'); document.getElementById('pem-hp')?.focus(); return; }
-        if (!alamat) { showToast('⚠️ Alamat pengiriman wajib diisi', 'error'); document.getElementById('pem-alamat')?.focus(); return; }
-        if (!kota) { showToast('⚠️ Kota wajib diisi', 'error'); document.getElementById('pem-kota')?.focus(); return; }
-        if (!provinsi) { showToast('⚠️ Provinsi wajib dipilih', 'error'); document.getElementById('pem-provinsi')?.focus(); return; }
-        if (!kodepos) { showToast('⚠️ Kode pos wajib diisi', 'error'); document.getElementById('pem-kodepos')?.focus(); return; }
-        
-        if (getOrderCount() === 0) { showToast('⚠️ Tidak ada produk untuk dipesan', 'error'); return; }
+            const elEmail = document.getElementById('pem-email');
+            const email = elEmail ? elEmail.value.trim() : '';
 
-        // Generate order
-        const orderId = Riwayat.generateId();
-        const items = getOrderItems();
-        const produkList = Object.entries(items).map(([id, qty]) => {
-            const p = PRODUK_DATA[id]; return p ? `${p.nama} ×${qty}` : '';
-        }).filter(Boolean).join('<br>');
+            const elHp = document.getElementById('pem-hp');
+            const hp = elHp ? elHp.value.trim() : '';
 
-        const bayar = document.querySelector('input[name="bayar"]:checked')?.value || 'bca';
-        const bayarLabel = { bca:'Bank BCA', mandiri:'Bank Mandiri', bni:'Bank BNI', gopay:'GoPay', ovo:'OVO', dana:'DANA', qris:'QRIS', cod:'COD', 'cicilan-6':'Cicilan 6 Bln', 'cicilan-12':'Cicilan 12 Bln', 'cicilan-24':'Cicilan 24 Bln' };
+            const elAlamat = document.getElementById('pem-alamat');
+            const alamat = elAlamat ? elAlamat.value.trim() : '';
 
-        const subtotal = getOrderTotal();
-        const afterDisk = subtotal * (1 - diskon);
-        const ongkir = getOngkir();
-        const ppn = Math.round(afterDisk * 0.11);
-        const total = Math.round(afterDisk + ongkir + ppn);
+            const elKota = document.getElementById('pem-kota');
+            const kota = elKota ? elKota.value.trim() : '';
 
-        const now = new Date();
-        const tanggal = now.toLocaleDateString('id-ID', { day:'2-digit', month:'short', year:'numeric' });
+            const elProvinsi = document.getElementById('pem-provinsi');
+            const provinsi = elProvinsi ? elProvinsi.value.trim() : '';
 
-        // Simpan ke riwayat
-        Riwayat.add({
-            id: orderId,
-            tanggal: tanggal,
-            nama: nama + ' ' + namaBelakang,
-            hp: hp,
-            alamat: alamat + ', ' + kota + ', ' + provinsi + ' (' + kodepos + ')',
-            produk: produkList,
-            qty: getOrderCount(),
-            bayar: bayarLabel[bayar] || bayar,
-            total: total,
-            status: 'proses'
+            const elKodepos = document.getElementById('pem-kodepos');
+            const kodepos = elKodepos ? elKodepos.value.trim() : '';
+
+            // Cek satu-satu apakah ada yang kosong (DIUBAH TANPA ?. MENGGUNAKAN VARIABEL DI ATAS)
+            if (!nama) { showToast('⚠️ Nama depan wajib diisi', 'error'); if (elNama) elNama.focus(); return; }
+            if (!namaBelakang) { showToast('⚠️ Nama belakang wajib diisi', 'error'); if (elNamaBelakang) elNamaBelakang.focus(); return; }
+            if (!email || !email.includes('@')) { showToast('⚠️ Email tidak valid', 'error'); if (elEmail) elEmail.focus(); return; }
+            if (!hp || hp.length < 9) { showToast('⚠️ Nomor HP tidak valid', 'error'); if (elHp) elHp.focus(); return; }
+            if (!alamat) { showToast('⚠️ Alamat pengiriman wajib diisi', 'error'); if (elAlamat) elAlamat.focus(); return; }
+            if (!kota) { showToast('⚠️ Kota wajib diisi', 'error'); if (elKota) elKota.focus(); return; }
+            if (!provinsi) { showToast('⚠️ Provinsi wajib dipilih', 'error'); if (elProvinsi) elProvinsi.focus(); return; }
+            if (!kodepos) { showToast('⚠️ Kode pos wajib diisi', 'error'); if (elKodepos) elKodepos.focus(); return; }
+            
+            if (getOrderCount() === 0) { showToast('⚠️ Tidak ada produk untuk dipesan', 'error'); return; }
+
+            // Generate order
+            const orderId = Riwayat.generateId();
+            const items = getOrderItems();
+            const produkList = Object.entries(items).map(([id, qty]) => {
+                const p = PRODUK_DATA[id]; return p ? `${p.nama} ×${qty}` : '';
+            }).filter(Boolean).join('<br>');
+
+            // Variabel bayar (DIUBAH TANPA ?.)
+            const elBayar = document.querySelector('input[name="bayar"]:checked');
+            const bayar = elBayar ? elBayar.value : 'bca';
+            
+            const bayarLabel = { bca:'Bank BCA', mandiri:'Bank Mandiri', bni:'Bank BNI', gopay:'GoPay', ovo:'OVO', dana:'DANA', qris:'QRIS', cod:'COD', 'cicilan-6':'Cicilan 6 Bln', 'cicilan-12':'Cicilan 12 Bln', 'cicilan-24':'Cicilan 24 Bln' };
+
+            const subtotal = getOrderTotal();
+            const afterDisk = subtotal * (1 - diskon);
+            const ongkir = getOngkir();
+            const ppn = Math.round(afterDisk * 0.11);
+            const total = Math.round(afterDisk + ongkir + ppn);
+
+            const now = new Date();
+            const tanggal = now.toLocaleDateString('id-ID', { day:'2-digit', month:'short', year:'numeric' });
+
+            // Simpan ke riwayat
+            Riwayat.add({
+                id: orderId,
+                tanggal: tanggal,
+                nama: nama + ' ' + namaBelakang,
+                hp: hp,
+                alamat: alamat + ', ' + kota + ', ' + provinsi + ' (' + kodepos + ')',
+                produk: produkList,
+                qty: getOrderCount(),
+                bayar: bayarLabel[bayar] || bayar,
+                total: total,
+                status: 'proses'
+            });
+
+            // Bersihkan sumber pesanan yang relevan SAJA
+            if (isBuyNow) {
+                BuyNow.clear();
+            } else {
+                Cart.clear();
+            }
+
+            // Bersihkan data form yang tersimpan (two-way binding)
+            localStorage.removeItem(FORM_KEY);
+
+            // Tampilkan modal
+            const modal = document.getElementById('modal-konfirmasi');
+            const orderEl = document.getElementById('modal-order-id');
+            if (orderEl) orderEl.textContent = '#' + orderId;
+            if (modal) {
+                modal.style.display = 'flex';
+                modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+            }
         });
-
-        // Bersihkan sumber pesanan yang relevan SAJA:
-        // - Kalau buy-now (beli satuan), hanya hapus BuyNow, Cart yang lain tidak disentuh.
-        // - Kalau dari keranjang, baru Cart dikosongkan.
-        if (isBuyNow) {
-            BuyNow.clear();
-        } else {
-            Cart.clear();
-        }
-
-        // Bersihkan data form yang tersimpan (two-way binding)
-        localStorage.removeItem(FORM_KEY);
-
-        // Tampilkan modal
-        const modal   = document.getElementById('modal-konfirmasi');
-        const orderEl = document.getElementById('modal-order-id');
-        if (orderEl) orderEl.textContent = '#' + orderId;
-        if (modal) {
-            modal.style.display = 'flex';
-            modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
-        }
-    });
-
+    }
     renderProduk();
 }
 
