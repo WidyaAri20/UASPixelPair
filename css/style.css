@@ -2343,15 +2343,57 @@ footer{
 @media (min-width: 768px) and (max-width: 1024px) {
   nav.navbar { gap: 12px; }
   .nav-links li a { padding: 6px 8px; font-size: 0.75rem; }
-  .hero-slide .hero-inner {padding-left: 20px; gap: 16px;}
+
+  .hero-slide .hero-inner { 
+    grid-template-columns: 1fr; 
+    padding-left: 20px; 
+    gap: 16px; 
+    text-align: left;
+  }
+  .hero-slide:nth-child(1) .hero-inner { 
+    grid-template-columns: 1fr; 
+    justify-items: start;
+  }
+  
+  .hero-slide:nth-child(1) .hero-feat-actions-row { 
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%; 
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .hero-slide:nth-child(1) .hero-features { 
+    display: grid; 
+    grid-template-columns: repeat(2, auto); 
+    gap: 10px 10px; 
+    margin-bottom: 0;
+  }
+
+  .hero-slide:nth-child(1) .hero-actions {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .hero-slide:nth-child(1) .hero-visual { display: none; }
+  
   .hero-title { font-size: 2.2rem; }
-  .hero-desc { font-size: 0.85rem; }
-  .hero-slide:nth-child(1) .hero-features { gap: 8px; }
-  .hero-slide:nth-child(1) .hero-feat { font-size: 0.62rem; }
-  .hero-card-stack { transform: scale(0.85); transform-origin: right center; }
+  .hero-desc { font-size: 0.85rem; max-width: 85%; margin-inline: 0; margin-bottom: 12px; }
+  .hero-slide:nth-child(1) .hero-feat { font-size: 0.72rem; }
+  .hero-card-stack { transform: scale(0.85); transform-origin: left center; }
+
+  .tentang-grid {
+    grid-template-columns: 1.3fr 1fr; /* Kolom kiri lebih lebar dari kolom kanan */
+    gap: 24px;
+  }
+  
   .stat-item { padding: 24px 8px; }
   .katalog-layout { grid-template-columns: 200px 1fr; gap: var(--sp-lg); }
-  .pemesanan-layout { grid-template-columns: 1fr 400px; gap: var(--sp-lg); }
+  
+  /* 2. PERBAIKAN FORM PEMESANAN: TETAP 2 KOLOM (RINGKASAN DI KANAN) */
+  .pemesanan-layout { grid-template-columns: 1fr 300px; gap: 20px; }
+  
   .sidebar-filter {padding: var(--sp-md, 14px);position: static; }
   .sidebar-filter h3 {font-size: .78rem; margin-bottom: var(--sp-md, 14px);}
   .filter-opt {font-size: .78rem; padding: 5px 0;}
@@ -2381,12 +2423,11 @@ footer{
   .hero-slide:nth-child(1) .hero-text {display: block; grid-column: 1; }
   .hero-slide:nth-child(1) .hero-feat-actions-row {display: block; width: 100%;}
   .hero-slide:nth-child(1) .hero-features { 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap; 
-    gap: 34px;        
-    margin-bottom: 22px;
-    max-width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 12px 32px;        
+    margin-bottom: 24px;
+    max-width: fit-content;
   }
 
   .hero-slide:nth-child(1) .hero-feat {white-space: nowrap;font-size: 0.78rem;}
